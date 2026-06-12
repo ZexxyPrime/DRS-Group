@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRS Human Resources Pvt. Ltd. — India's Workforce. World's Reach.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#C9960C;--g2:#E8B84B;--g3:rgba(201,150,12,0.12);--gb:rgba(201,150,12,0.25);
+  --ink:#060608;--ink2:#0D0D12;--ink3:#13131A;--ink4:#1A1A24;--ink5:#22222E;
+  --w:#FFFFFF;--w2:#E8E8F0;--w3:#A0A0B8;--w4:#606078;
+  --red:#FF4444;--wa:#25D366;
+  --fd:'Cinzel',serif;--fb:'DM Sans',sans-serif;--fm:'DM Mono',monospace;
+  --ease:cubic-bezier(0.4,0,0.2,1);--spring:cubic-bezier(0.34,1.56,0.64,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--ink);color:var(--w);font-family:var(--fb);overflow-x:hidden;line-height:1.6}
+::selection{background:rgba(201,150,12,0.3);color:var(--w)}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:var(--fb);border:none;outline:none}
+input,select,textarea{font-family:var(--fb);outline:none}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--gb);border-radius:3px}
+
+/* ── ANNOUNCE BAR ── */
+#ab{background:linear-gradient(90deg,var(--ink3),var(--ink4),var(--ink3));border-bottom:1px solid var(--gb);padding:10px 5%;display:flex;align-items:center;justify-content:center;gap:16px;position:relative;z-index:100}
+#ab-text{font-size:0.78rem;color:var(--w2);letter-spacing:0.05em;text-align:center}
+#ab-text strong{color:var(--g2)}
+#ab-text a{color:var(--g2);border-bottom:1px solid transparent;transition:border-color 0.2s}
+#ab-text a:hover{border-bottom-color:var(--g2)}
+#ab-close{background:none;border:none;color:var(--w4);font-size:1rem;cursor:pointer;padding:2px 8px;border-radius:4px;transition:color 0.2s;flex-shrink:0}
+#ab-close:hover{color:var(--w)}
+
+/* ── NAVBAR ── */
+#nav{position:sticky;top:0;z-index:999;height:68px;display:flex;align-items:center;padding:0 5%;background:rgba(6,6,8,0.85);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid transparent;transition:all 0.4s var(--ease)}
+#nav.scrolled{border-bottom-color:var(--gb);box-shadow:0 8px 40px rgba(0,0,0,0.6)}
+.nav-logo{font-family:var(--fd);font-size:1.05rem;font-weight:700;color:var(--g2);letter-spacing:0.08em;flex-shrink:0;text-shadow:0 0 40px rgba(201,150,12,0.4)}
+.nav-logo sup{font-size:0.5em;vertical-align:super;opacity:0.8}
+.nav-links{display:flex;gap:32px;list-style:none;margin:0 auto}
+.nav-links a{font-size:0.75rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--w3);transition:color 0.3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--g2);transition:width 0.3s var(--ease)}
+.nav-links a:hover{color:var(--g2)}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.badge-red{background:var(--red);color:#fff;font-size:0.6rem;font-weight:700;padding:3px 8px;border-radius:20px;letter-spacing:0.06em;text-transform:uppercase;font-family:var(--fm)}
+
+/* Notification Bell */
+.bell-wrap{position:relative}
+.bell-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--w3);width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;position:relative}
+.bell-btn:hover{border-color:var(--gb);color:var(--g2);background:var(--g3)}
+.bell-btn.active{border-color:var(--gb);color:var(--g2);background:var(--g3)}
+.bell-btn.ringing{animation:bellring 0.5s ease}
+@keyframes bellring{0%,100%{rotate:0deg}20%{rotate:14deg}40%{rotate:-12deg}60%{rotate:8deg}80%{rotate:-5deg}}
+.bell-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--red);border:2px solid var(--ink);animation:dp 2s ease-in-out infinite;display:none}
+@keyframes dp{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+.bell-dot.show{display:block}
+.notif-panel{position:absolute;top:calc(100% + 10px);right:0;width:340px;background:var(--ink3);border:1px solid var(--gb);border-radius:16px;overflow:hidden;z-index:1000;opacity:0;pointer-events:none;transform:translateY(-6px) scale(0.97);transform-origin:top right;transition:all 0.2s var(--spring);box-shadow:0 24px 80px rgba(0,0,0,0.7)}
+.notif-panel.open{opacity:1;pointer-events:auto;transform:none}
+.np-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.3)}
+.np-title{font-family:var(--fd);font-size:0.85rem;font-weight:600;color:var(--g2);letter-spacing:0.06em}
+.np-clear{background:none;border:none;color:var(--w4);font-size:0.72rem;cursor:pointer;font-family:var(--fb);padding:3px 8px;border-radius:4px;transition:all 0.2s;display:none}
+.np-clear:hover{color:var(--red);background:rgba(255,68,68,0.08)}
+.np-clear.show{display:block}
+.np-body{max-height:360px;overflow-y:auto}
+.np-body::-webkit-scrollbar{width:3px}
+.np-body::-webkit-scrollbar-thumb{background:var(--gb);border-radius:2px}
+.np-empty{text-align:center;padding:40px 20px;color:var(--w4)}
+.np-empty-icon{font-size:2rem;margin-bottom:10px;opacity:0.5}
+.np-empty-text{font-size:0.82rem;line-height:1.6}
+.ni{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.04);animation:niIn 0.25s ease;transition:background 0.2s}
+.ni:last-child{border-bottom:none}
+@keyframes niIn{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:none}}
+.ni:hover{background:rgba(255,255,255,0.03)}
+.ni.unread{background:rgba(201,150,12,0.06);border-left:2px solid var(--g2)}
+.ni-icon{width:34px;height:34px;border-radius:8px;background:var(--g3);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
+.ni-body{flex:1;min-width:0}
+.ni-title{font-weight:600;font-size:0.82rem;color:var(--w);margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ni-msg{font-size:0.75rem;color:var(--w3);line-height:1.5;margin-bottom:5px}
+.ni-time{font-size:0.67rem;color:var(--w4);font-family:var(--fm)}
+.ni-acts{display:flex;gap:5px;margin-top:7px}
+.niab{font-size:0.7rem;font-weight:600;padding:3px 9px;border-radius:5px;cursor:pointer;border:1px solid;font-family:var(--fb);transition:all 0.2s}
+.niab-open{background:var(--g3);border-color:var(--gb);color:var(--g2)}
+.niab-open:hover{background:rgba(201,150,12,0.2)}
+.niab-dismiss{background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.08);color:var(--w4)}
+.niab-dismiss:hover{border-color:rgba(255,68,68,0.3);color:var(--red)}
+
+/* CTA Buttons */
+.btn-prime{background:linear-gradient(135deg,var(--g) 0%,var(--g2) 100%);color:var(--ink);padding:11px 24px;border-radius:8px;font-weight:600;font-size:0.82rem;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.3s var(--ease);border:none;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden}
+.btn-prime::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--g2),var(--g));opacity:0;transition:opacity 0.3s}
+.btn-prime:hover::before{opacity:1}
+.btn-prime:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,150,12,0.35)}
+.btn-prime span{position:relative;z-index:1}
+.btn-ghost{background:transparent;color:var(--w);padding:11px 24px;border-radius:8px;font-weight:500;font-size:0.82rem;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.3s;border:1px solid rgba(255,255,255,0.15);display:inline-flex;align-items:center;gap:8px}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.05);transform:translateY(-1px)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.ham span{display:block;width:22px;height:1.5px;background:var(--w);transition:all 0.3s;border-radius:2px}
+
+/* Mobile Nav */
+#mob-nav{position:fixed;top:0;right:-100%;width:100%;max-width:340px;height:100vh;background:var(--ink2);z-index:2000;padding:80px 36px 40px;transition:right 0.4s var(--ease);border-left:1px solid var(--gb);display:flex;flex-direction:column;gap:4px}
+#mob-nav.open{right:0}
+#mob-nav-close{position:absolute;top:22px;right:22px;background:none;border:none;color:var(--w3);font-size:1.4rem;cursor:pointer}
+#mob-nav a{font-family:var(--fd);font-size:1.5rem;font-weight:600;color:var(--w2);padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);letter-spacing:0.06em;transition:color 0.2s}
+#mob-nav a:hover{color:var(--g2)}
+.mob-cta{margin-top:24px}
+.nav-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1999;backdrop-filter:blur(4px)}
+.nav-backdrop.show{display:block}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 5%}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:0.03;z-index:1}
+.hero-glow{position:absolute;top:-20%;left:-10%;width:70%;height:140%;background:radial-gradient(ellipse at 30% 50%,rgba(201,150,12,0.08) 0%,transparent 60%);z-index:2}
+.hero-glow2{position:absolute;bottom:-30%;right:-10%;width:60%;height:100%;background:radial-gradient(ellipse at 70% 70%,rgba(201,150,12,0.05) 0%,transparent 60%);z-index:2}
+#hero-canvas{position:absolute;inset:0;z-index:3;opacity:0.04}
+.hero-content{position:relative;z-index:4;display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;align-items:center;width:100%;max-width:1300px;margin:0 auto;padding:100px 0 80px}
+.hero-left{display:flex;flex-direction:column}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;opacity:0;animation:fadeUp 0.8s 0.2s var(--ease) forwards}
+.hero-eyebrow-line{width:32px;height:1px;background:var(--g2)}
+.hero-eyebrow-text{font-family:var(--fm);font-size:0.72rem;color:var(--g2);letter-spacing:0.2em;text-transform:uppercase}
+.hero-h1{font-family:var(--fd);font-size:clamp(3.2rem,5.5vw,6rem);font-weight:900;line-height:1.0;letter-spacing:0.02em;margin-bottom:8px;opacity:0;animation:fadeUp 0.9s 0.35s var(--ease) forwards}
+.hero-h1-line2{font-family:var(--fd);font-size:clamp(3.2rem,5.5vw,6rem);font-weight:900;line-height:1.0;letter-spacing:0.02em;margin-bottom:36px;background:linear-gradient(135deg,var(--g) 0%,var(--g2) 50%,var(--g) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:fadeUp 0.9s 0.45s var(--ease) forwards;background-size:200% auto;animation:fadeUp 0.9s 0.45s var(--ease) forwards,shimmer 4s 1.5s linear infinite}
+@keyframes shimmer{to{background-position:200% center}}
+.hero-desc{font-size:1.05rem;color:var(--w3);line-height:1.8;max-width:520px;margin-bottom:40px;font-weight:300;opacity:0;animation:fadeUp 0.9s 0.55s var(--ease) forwards}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px;opacity:0;animation:fadeUp 0.9s 0.65s var(--ease) forwards}
+.hero-trust{display:flex;flex-wrap:wrap;gap:20px;opacity:0;animation:fadeUp 0.9s 0.75s var(--ease) forwards}
+.trust-chip{display:flex;align-items:center;gap:7px;font-size:0.77rem;color:var(--w3);font-weight:500}
+.trust-chip-dot{width:5px;height:5px;border-radius:50%;background:var(--g2);flex-shrink:0}
+.hero-right{display:flex;align-items:center;justify-content:center;opacity:0;animation:fadeIn 1.2s 0.6s var(--ease) forwards}
+.hero-divider{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gb),transparent);z-index:5}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* Hero decoration */
+.hero-deco{position:relative;width:100%;max-width:500px}
+.hero-deco svg{width:100%;height:auto}
+
+/* ── TRUST STRIP ── */
+#trust{background:linear-gradient(90deg,var(--ink2),var(--ink3),var(--ink2));border-top:1px solid var(--gb);border-bottom:1px solid var(--gb);padding:20px 0;overflow:hidden;position:relative}
+#trust::before,#trust::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2}
+#trust::before{left:0;background:linear-gradient(90deg,var(--ink2),transparent)}
+#trust::after{right:0;background:linear-gradient(-90deg,var(--ink2),transparent)}
+.trust-track{display:flex;gap:0;animation:trustScroll 28s linear infinite;width:max-content}
+@keyframes trustScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.trust-chip-strip{display:flex;align-items:center;gap:10px;padding:4px 36px;font-size:0.78rem;font-weight:600;color:var(--w2);white-space:nowrap;letter-spacing:0.04em}
+.trust-chip-strip .ti{color:var(--g2);font-size:1rem}
+.trust-sep{color:var(--gb);padding:0 8px;font-size:0.6rem}
+
+/* ── SECTION BASE ── */
+.sec{padding:100px 5%}
+.sec-inner{max-width:1300px;margin:0 auto}
+.sec-alt{background:var(--ink2)}
+.sec-dark{background:var(--ink3)}
+.sec-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sec-eyebrow-line{width:28px;height:1px;background:var(--g2)}
+.sec-eyebrow-label{font-family:var(--fm);font-size:0.68rem;color:var(--g2);letter-spacing:0.2em;text-transform:uppercase}
+.sec-title{font-family:var(--fd);font-size:clamp(2rem,4vw,3.5rem);font-weight:700;line-height:1.1;letter-spacing:0.03em;margin-bottom:16px}
+.sec-sub{font-size:1rem;color:var(--w3);max-width:580px;line-height:1.75;font-weight:300;margin-bottom:60px}
+.sec-title span{background:linear-gradient(135deg,var(--g),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Fade animations */
+.fu{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease)}
+.fu.vis{opacity:1;transform:none}
+.fi{opacity:0;transition:opacity 0.7s var(--ease)}
+.fi.vis{opacity:1}
+.d1{transition-delay:0.05s}.d2{transition-delay:0.12s}.d3{transition-delay:0.19s}.d4{transition-delay:0.26s}.d5{transition-delay:0.33s}.d6{transition-delay:0.40s}
+
+/* ── SERVICES GRID ── */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gb);border:1px solid var(--gb);border-radius:16px;overflow:hidden}
+.svc-card{background:var(--ink2);padding:28px 24px;cursor:pointer;transition:all 0.35s var(--ease);position:relative;display:flex;flex-direction:column}
+.svc-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,150,12,0.08),transparent);opacity:0;transition:opacity 0.35s}
+.svc-card:hover{background:var(--ink3);z-index:1}
+.svc-card:hover::before{opacity:1}
+.svc-card:hover .svc-arrow{opacity:1;transform:translate(0,0)}
+.svc-badge{display:inline-flex;font-family:var(--fm);font-size:0.62rem;color:var(--g2);letter-spacing:0.08em;margin-bottom:16px;text-transform:uppercase}
+.svc-icon-wrap{width:48px;height:48px;border-radius:10px;background:var(--g3);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:18px;transition:all 0.3s}
+.svc-card:hover .svc-icon-wrap{background:rgba(201,150,12,0.2);transform:scale(1.05)}
+.svc-name{font-family:var(--fd);font-size:1.05rem;font-weight:600;letter-spacing:0.04em;margin-bottom:8px;color:var(--w)}
+.svc-desc{font-size:0.78rem;color:var(--w3);line-height:1.65;flex:1;font-weight:300}
+.svc-arrow{margin-top:18px;font-size:0.75rem;font-weight:600;color:var(--g2);letter-spacing:0.06em;text-transform:uppercase;opacity:0;transform:translate(-4px,0);transition:all 0.3s;display:inline-flex;align-items:center;gap:5px}
+.svc-custom-card{background:linear-gradient(135deg,var(--ink3),rgba(201,150,12,0.06));border-style:dashed}
+
+/* ── HOW IT WORKS ── */
+.hiw-grid{display:grid;grid-template-columns:1fr 80px 1fr 80px 1fr;align-items:start;gap:0;margin-top:60px}
+.hiw-step{text-align:center;padding:0 16px}
+.hiw-num{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--g),var(--g2));color:var(--ink);font-family:var(--fd);font-size:1.6rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 8px 24px rgba(201,150,12,0.3)}
+.hiw-icon{font-size:2.2rem;margin-bottom:14px;display:block}
+.hiw-name{font-family:var(--fd);font-size:1.25rem;font-weight:600;letter-spacing:0.04em;margin-bottom:10px}
+.hiw-desc{font-size:0.84rem;color:var(--w3);line-height:1.7;font-weight:300}
+.hiw-connector{display:flex;align-items:flex-start;padding-top:28px}
+.hiw-connector-inner{flex:1;height:1px;background:linear-gradient(90deg,var(--g2),rgba(201,150,12,0.2));position:relative}
+.hiw-connector-inner::after{content:'›';position:absolute;right:-6px;top:50%;transform:translateY(-50%);color:var(--g2);font-size:0.9rem}
+.hiw-badge-wrap{text-align:center;margin-top:56px}
+.hiw-badge{display:inline-flex;align-items:center;gap:10px;background:var(--g3);border:1px solid var(--gb);border-radius:40px;padding:12px 28px;font-size:0.85rem;font-weight:600;color:var(--g2);letter-spacing:0.04em}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-label{font-family:var(--fm);font-size:0.68rem;color:var(--g2);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px}
+.about-heading{font-family:var(--fd);font-size:1.4rem;font-weight:600;color:var(--g2);margin-bottom:16px;letter-spacing:0.04em}
+.about-para{font-size:0.92rem;color:var(--w3);line-height:1.85;margin-bottom:24px;font-weight:300}
+.about-bullets{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.about-bullet{display:flex;gap:12px;font-size:0.88rem;color:var(--w2);line-height:1.6}
+.about-bullet-mark{color:var(--g2);flex-shrink:0;font-size:1rem;margin-top:2px}
+.about-bullet strong{color:var(--w);font-weight:600}
+.about-mission{background:var(--g3);border-left:3px solid var(--g2);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:32px}
+.about-mission-lbl{font-family:var(--fm);font-size:0.65rem;color:var(--g2);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:8px}
+.about-mission-text{font-family:var(--fd);font-size:1rem;color:var(--w2);line-height:1.65;font-style:italic;font-weight:400}
+.about-right{display:flex;flex-direction:column;gap:16px}
+.about-stat-panel{background:var(--ink3);border:1px solid var(--gb);border-radius:16px;overflow:hidden}
+.stat-grid-2x2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gb)}
+.stat-cell{background:var(--ink3);padding:24px 20px;text-align:center}
+.stat-cell-num{font-family:var(--fd);font-size:2rem;font-weight:700;color:var(--g2);display:block;margin-bottom:4px}
+.stat-cell-lbl{font-family:var(--fm);font-size:0.65rem;color:var(--w4);letter-spacing:0.12em;text-transform:uppercase}
+.about-reg-badge{padding:18px 22px;display:flex;align-items:center;gap:12px;border-top:1px solid var(--gb)}
+.about-reg-text{font-size:0.82rem;color:var(--w3)}
+.about-reg-text strong{color:var(--w);display:block;font-size:0.85rem;margin-bottom:2px}
+.about-certs{background:var(--ink3);border:1px solid var(--gb);border-radius:16px;padding:22px}
+.about-certs-title{font-family:var(--fm);font-size:0.65rem;color:var(--g2);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:14px}
+.cert-list{display:flex;flex-direction:column;gap:8px}
+.cert-item{display:flex;align-items:center;gap:10px;font-size:0.84rem;color:var(--w2);padding:9px 12px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);transition:all 0.25s}
+.cert-item:hover{border-color:var(--gb);background:var(--g3);color:var(--w)}
+.cert-icon{font-size:0.95rem;width:26px;text-align:center;flex-shrink:0}
+.about-hq{background:var(--ink3);border:1px solid var(--gb);border-radius:16px;padding:22px}
+.hq-row{display:flex;gap:10px;font-size:0.84rem;color:var(--w3);margin-bottom:10px;line-height:1.5}
+.hq-row:last-child{margin-bottom:0}
+.hq-row a{color:var(--g2);transition:opacity 0.2s}
+.hq-row a:hover{opacity:0.8}
+
+/* ── COUNTERS ── */
+#counters{border-top:1px solid var(--gb);border-bottom:1px solid var(--gb)}
+.counters-grid{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.counter-cell{padding:60px 24px;text-align:center;position:relative}
+.counter-cell::after{content:'';position:absolute;right:0;top:20%;bottom:20%;width:1px;background:var(--gb)}
+.counter-cell:last-child::after{display:none}
+.counter-num{font-family:var(--fd);font-size:clamp(3rem,5vw,5rem);font-weight:900;background:linear-gradient(135deg,var(--g),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;line-height:1}
+.counter-suf{font-family:var(--fd);font-size:clamp(1.8rem,3vw,3rem);background:linear-gradient(135deg,var(--g),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.counter-lbl{font-family:var(--fm);font-size:0.72rem;color:var(--w4);letter-spacing:0.14em;text-transform:uppercase;margin-top:12px}
+
+/* ── COVERAGE ── */
+.coverage-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.cov-label{font-family:var(--fm);font-size:0.65rem;color:var(--w4);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px}
+.pill-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.pill{background:var(--ink3);border:1px solid var(--gb);border-radius:6px;padding:6px 14px;font-size:0.78rem;font-weight:500;color:var(--w2);transition:all 0.25s;letter-spacing:0.02em}
+.pill:hover{background:var(--g3);border-color:var(--g2);color:var(--g2)}
+.pill-intl{background:rgba(201,150,12,0.08);border-color:var(--g2);color:var(--g2)}
+.cov-cta{grid-column:1/-1;background:var(--ink3);border:1px solid var(--gb);border-radius:12px;padding:28px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.cov-cta-text{font-family:var(--fd);font-size:1.1rem;color:var(--w2);line-height:1.6}
+.cov-cta-text strong{color:var(--w)}
+
+/* ── WHY DRS ── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gb);border:1px solid var(--gb);border-radius:16px;overflow:hidden}
+.why-card{background:var(--ink2);padding:32px 28px;transition:all 0.3s}
+.why-card:hover{background:var(--ink3)}
+.why-card:hover .why-icon{transform:scale(1.1)}
+.why-icon{font-size:1.8rem;margin-bottom:18px;display:block;transition:transform 0.3s}
+.why-title{font-family:var(--fd);font-size:1.15rem;font-weight:600;letter-spacing:0.04em;margin-bottom:10px;color:var(--w)}
+.why-desc{font-size:0.83rem;color:var(--w3);line-height:1.72;font-weight:300}
+
+/* ── TESTIMONIALS ── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testi-card{background:var(--ink3);border:1px solid var(--gb);border-radius:16px;padding:32px;position:relative;overflow:hidden;transition:all 0.3s}
+.testi-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:var(--g3);border-radius:0 0 0 80px;opacity:0;transition:opacity 0.3s}
+.testi-card:hover{border-color:var(--g2);box-shadow:0 0 0 1px var(--gb);transform:translateY(-4px)}
+.testi-card:hover::before{opacity:1}
+.testi-quote{font-family:var(--fd);font-size:4rem;color:var(--g2);line-height:0.6;margin-bottom:16px;opacity:0.3;position:absolute;top:20px;right:24px;font-style:italic}
+.testi-stars{color:var(--g2);font-size:0.85rem;letter-spacing:3px;margin-bottom:14px}
+.testi-text{font-size:0.9rem;color:var(--w3);line-height:1.78;margin-bottom:24px;font-style:italic;font-weight:300}
+.testi-client{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:42px;height:42px;border-radius:10px;background:var(--g3);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1rem;font-weight:700;color:var(--g2);flex-shrink:0}
+.testi-name{font-weight:600;font-size:0.86rem;color:var(--w)}
+.testi-role{font-size:0.75rem;color:var(--w4);font-family:var(--fm)}
+
+/* ── FAQ ── */
+.faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.faq-item{background:var(--ink3);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;transition:border-color 0.3s}
+.faq-item.open{border-color:var(--gb)}
+.faq-q{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:16px;font-weight:500;font-size:0.92rem;user-select:none;transition:color 0.2s}
+.faq-q:hover{color:var(--g2)}
+.faq-arrow{width:28px;height:28px;border-radius:7px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:var(--w4);font-size:0.7rem;transition:all 0.3s;flex-shrink:0}
+.faq-item.open .faq-arrow{background:var(--g2);color:var(--ink);border-color:var(--g2);transform:rotate(180deg)}
+.faq-body{max-height:0;overflow:hidden;transition:max-height 0.4s var(--ease),padding 0.3s}
+.faq-body-inner{padding:0 24px 20px;font-size:0.87rem;color:var(--w3);line-height:1.8;border-top:1px solid rgba(255,255,255,0.05);font-weight:300}
+.faq-item.open .faq-body{max-height:280px}
+
+/* ── MARKETPLACE ── */
+#marketplace{background:var(--ink2);border-top:1px solid var(--gb)}
+.mkt-toggle-wrap{display:flex;justify-content:center;margin:32px 0 0}
+.mkt-toggle{display:inline-flex;background:var(--ink);border:1px solid var(--gb);border-radius:12px;padding:5px;gap:4px}
+.mkt-tab{padding:10px 28px;border-radius:9px;font-size:0.82rem;font-weight:600;cursor:pointer;transition:all 0.25s;border:none;font-family:var(--fb);color:var(--w4);letter-spacing:0.04em;text-transform:uppercase;font-size:0.75rem}
+.mkt-tab.active{background:linear-gradient(135deg,var(--g),var(--g2));color:var(--ink)}
+.mkt-form-section{max-width:700px;margin:40px auto 80px}
+.mkt-fw{display:none}
+.mkt-fw.active{display:block}
+.mkt-card{background:var(--ink3);border:1px solid var(--gb);border-radius:16px;padding:36px}
+.mkt-card-title{font-family:var(--fd);font-size:1.5rem;font-weight:700;margin-bottom:6px;letter-spacing:0.04em}
+.mkt-card-sub{font-size:0.84rem;color:var(--w3);margin-bottom:28px;font-weight:300}
+.mkt-divider{height:1px;background:linear-gradient(90deg,var(--gb),transparent);margin-bottom:24px}
+
+/* ── CTA BANNER ── */
+#cta-sec{background:var(--ink2);border-top:1px solid var(--gb);position:relative;overflow:hidden}
+#cta-sec::before{content:'';position:absolute;top:-50%;left:-20%;width:80%;height:200%;background:radial-gradient(ellipse,rgba(201,150,12,0.06) 0%,transparent 60%)}
+.cta-inner{position:relative;z-index:1;text-align:center;padding:96px 5%}
+.cta-inner h2{font-family:var(--fd);font-size:clamp(2.2rem,4vw,3.8rem);font-weight:900;margin-bottom:16px;letter-spacing:0.03em}
+.cta-inner p{font-size:1rem;color:var(--w3);max-width:520px;margin:0 auto 40px;line-height:1.7;font-weight:300}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);border-top:1px solid var(--gb);padding:72px 5% 0}
+.footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;gap:48px;max-width:1300px;margin:0 auto;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.footer-brand{font-family:var(--fd);font-size:1.15rem;font-weight:700;color:var(--g2);margin-bottom:6px;letter-spacing:0.06em}
+.footer-tag{font-size:0.78rem;color:var(--w4);font-style:italic;margin-bottom:14px;font-family:var(--fm)}
+.footer-desc{font-size:0.82rem;color:var(--w4);line-height:1.75;margin-bottom:22px;font-weight:300}
+.socials{display:flex;gap:8px}
+.social-btn{width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:var(--w4);font-size:0.85rem;transition:all 0.25s}
+.social-btn:hover{border-color:var(--gb);color:var(--g2);background:var(--g3)}
+.footer-col-title{font-family:var(--fd);font-size:0.9rem;font-weight:600;color:var(--w);margin-bottom:18px;letter-spacing:0.06em}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-links a{font-size:0.82rem;color:var(--w4);transition:color 0.2s;font-weight:300}
+.footer-links a:hover{color:var(--g2)}
+.contact-row{display:flex;gap:10px;font-size:0.82rem;color:var(--w4);margin-bottom:12px;line-height:1.5;font-weight:300}
+.contact-row a{color:var(--w4);transition:color 0.2s}
+.contact-row a:hover{color:var(--g2)}
+.wa-footer-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.25);color:var(--wa);padding:9px 16px;border-radius:8px;font-size:0.8rem;font-weight:600;margin-top:6px;transition:all 0.25s}
+.wa-footer-btn:hover{background:rgba(37,211,102,0.18)}
+.footer-bottom{max-width:1300px;margin:0 auto;padding:22px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:0.74rem;color:var(--w4);font-family:var(--fm)}
+.footer-bottom a{color:var(--w4);transition:color 0.2s}
+.footer-bottom a:hover{color:var(--g2)}
+
+/* ── FLOATERS ── */
+#wa-float{position:fixed;bottom:28px;right:28px;z-index:800}
+#wa-float a{width:52px;height:52px;border-radius:14px;background:var(--wa);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 28px rgba(37,211,102,0.4);transition:all 0.3s;position:relative}
+#wa-float a:hover{transform:scale(1.08);box-shadow:0 10px 36px rgba(37,211,102,0.5)}
+#wa-float a::before{content:'';position:absolute;inset:-6px;border-radius:18px;border:2px solid var(--wa);animation:waring 2.5s ease-in-out infinite;opacity:0.5}
+@keyframes waring{0%,100%{transform:scale(0.92);opacity:0.5}50%{transform:scale(1.15);opacity:0}}
+.wa-svg{width:26px;height:26px;fill:#fff}
+.wa-tip{position:absolute;right:62px;top:50%;transform:translateY(-50%);background:var(--ink3);color:var(--w);font-size:0.74rem;padding:6px 12px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.2s;border:1px solid var(--gb)}
+#wa-float a:hover~.wa-tip{opacity:1}
+#btt{position:fixed;bottom:28px;left:28px;z-index:800;width:42px;height:42px;border-radius:12px;background:var(--ink3);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;color:var(--w3);font-size:0.9rem;cursor:pointer;transition:all 0.3s;opacity:0;pointer-events:none}
+#btt.show{opacity:1;pointer-events:auto}
+#btt:hover{background:var(--g3);border-color:var(--g2);color:var(--g2)}
+
+/* ── DIRECTORS ── */
+.directors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.director-card{background:var(--ink2);border:1px solid var(--gb);border-radius:16px;padding:36px 28px;text-align:center;transition:all 0.35s var(--ease);position:relative;overflow:hidden}
+.director-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--g2),transparent);opacity:0;transition:opacity 0.35s}
+.director-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.5);border-color:var(--g2)}
+.director-card:hover::before{opacity:1}
+.director-avatar{width:72px;height:72px;border-radius:16px;background:linear-gradient(135deg,rgba(201,150,12,0.15),rgba(232,184,75,0.08));border:2px solid var(--gb);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--g2);margin:0 auto 18px;transition:all 0.35s;letter-spacing:0.08em}
+.director-card:hover .director-avatar{border-color:var(--g2);background:linear-gradient(135deg,rgba(201,150,12,0.25),rgba(232,184,75,0.15));box-shadow:0 0 24px rgba(201,150,12,0.2)}
+.director-name{font-family:var(--fd);font-size:1.15rem;font-weight:700;letter-spacing:0.06em;color:var(--w);margin-bottom:5px}
+.director-title{font-family:var(--fm);font-size:0.68rem;color:var(--g2);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:18px}
+.director-divider{width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--gb),transparent);margin:0 auto 18px}
+.director-bio{font-size:0.83rem;color:var(--w3);line-height:1.78;margin-bottom:20px;font-weight:300;text-align:left}
+.director-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.dtag{background:var(--g3);border:1px solid var(--gb);border-radius:5px;padding:3px 10px;font-family:var(--fm);font-size:0.62rem;color:var(--g2);letter-spacing:0.06em;text-transform:uppercase}
+@media(max-width:900px){.directors-grid{grid-template-columns:1fr}}
+
+/* ── IN-APP NOTIF BAR ── */
+#notif-bar{position:fixed;top:0;left:0;right:0;z-index:2000;background:linear-gradient(90deg,var(--ink2),var(--ink3),var(--ink2));border-bottom:1px solid var(--g2);padding:14px 5%;display:none;align-items:center;justify-content:space-between;gap:16px;animation:slideDown 0.4s var(--ease);box-shadow:0 4px 32px rgba(0,0,0,0.6)}
+@keyframes slideDown{from{transform:translateY(-100%)}to{transform:none}}
+#notif-bar.show{display:flex}
+.nb-content{display:flex;align-items:center;gap:14px;flex:1;min-width:0}
+.nb-icon{width:38px;height:38px;border-radius:9px;background:var(--g3);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.nb-title{font-weight:700;font-size:0.88rem;color:var(--w);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nb-body{font-size:0.78rem;color:var(--w3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nb-cta{background:linear-gradient(135deg,var(--g),var(--g2));color:var(--ink);padding:7px 16px;border-radius:7px;font-size:0.76rem;font-weight:700;cursor:pointer;border:none;font-family:var(--fb);letter-spacing:0.04em;text-transform:uppercase;transition:all 0.2s;flex-shrink:0}
+.nb-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,150,12,0.3)}
+.nb-close{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--w4);width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.85rem;transition:all 0.2s;flex-shrink:0}
+.nb-close:hover{background:rgba(255,255,255,0.1);color:var(--w)}
+
+/* ── PUSH PROMPT ── */
+#push-prompt{position:fixed;bottom:96px;right:28px;z-index:800;background:var(--ink3);border:1px solid var(--gb);border-radius:16px;padding:22px;max-width:290px;box-shadow:0 12px 48px rgba(0,0,0,0.6);animation:popUp 0.4s var(--spring);display:none}
+#push-prompt.show{display:block}
+@keyframes popUp{from{opacity:0;transform:translateY(14px) scale(0.96)}to{opacity:1;transform:none}}
+.pp-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+.pp-emoji{font-size:1.6rem;flex-shrink:0}
+.pp-title{font-family:var(--fd);font-size:1rem;font-weight:600;color:var(--w);letter-spacing:0.04em;margin-bottom:3px}
+.pp-sub{font-size:0.76rem;color:var(--w3);line-height:1.6;font-weight:300}
+.pp-btns{display:flex;gap:8px;margin-top:16px}
+.pp-allow{flex:1;background:linear-gradient(135deg,var(--g),var(--g2));color:var(--ink);border:none;border-radius:8px;padding:9px;font-weight:700;font-size:0.78rem;cursor:pointer;font-family:var(--fb);transition:all 0.2s;letter-spacing:0.03em}
+.pp-allow:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(201,150,12,0.3)}
+.pp-deny{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--w4);border-radius:8px;padding:9px 14px;font-size:0.78rem;cursor:pointer;font-family:var(--fb);transition:all 0.2s}
+.pp-deny:hover{border-color:rgba(255,255,255,0.15);color:var(--w)}
+
+/* ── MODAL ── */
+#modal-ov{position:fixed;inset:0;background:rgba(0,0,0,0.9);backdrop-filter:blur(10px);z-index:3000;display:flex;align-items:flex-start;justify-content:center;padding:36px 16px;opacity:0;pointer-events:none;transition:opacity 0.3s}
+#modal-ov.open{opacity:1;pointer-events:auto}
+#modal-box{background:var(--ink2);border:1px solid var(--gb);border-radius:18px;width:100%;max-width:660px;max-height:90vh;overflow-y:auto;transform:scale(0.94);transition:transform 0.35s var(--spring);position:relative;margin:auto}
+#modal-ov.open #modal-box{transform:none}
+.modal-head{padding:32px 32px 0;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:22px;position:sticky;top:0;background:var(--ink2);z-index:1;border-radius:18px 18px 0 0}
+.modal-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--w4);width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.9rem;transition:all 0.2s}
+.modal-close:hover{background:rgba(255,255,255,0.08);color:var(--w)}
+.modal-title{font-family:var(--fd);font-size:1.7rem;font-weight:700;margin-bottom:5px;letter-spacing:0.04em}
+.modal-sub{font-size:0.82rem;color:var(--w3);font-weight:300}
+.modal-gold-line{height:1px;background:linear-gradient(90deg,var(--g2),transparent);margin-top:18px}
+.modal-body{padding:28px 32px 32px}
+.form-sec-lbl{font-family:var(--fm);font-size:0.63rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--g2);margin-bottom:18px;margin-top:28px;padding-bottom:8px;border-bottom:1px solid rgba(201,150,12,0.15)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:0.75rem;font-weight:600;color:var(--w3);margin-bottom:5px;letter-spacing:0.04em}
+.fg label .req{color:var(--g2)}
+.fi-inp{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:9px;padding:10px 14px;color:var(--w);font-size:0.87rem;transition:all 0.25s;font-family:var(--fb)}
+.fi-inp:focus{border-color:var(--g2);background:rgba(201,150,12,0.04);outline:none}
+.fi-inp.err{border-color:var(--red)}
+.fi-inp option{background:var(--ink2)}
+textarea.fi-inp{resize:vertical;min-height:76px}
+.ferr{font-size:0.72rem;color:var(--red);margin-top:4px;display:none}
+.fg.has-err .ferr{display:block}
+.fg.has-err .fi-inp{border-color:var(--red)}
+.radio-grp{display:flex;flex-wrap:wrap;gap:8px}
+.rl{display:flex;align-items:center;gap:7px;cursor:pointer;font-size:0.82rem;color:var(--w3);padding:7px 14px;border-radius:7px;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s}
+.rl input{accent-color:var(--g2);width:13px;height:13px}
+.rl:has(input:checked){border-color:var(--gb);background:var(--g3);color:var(--w)}
+.phone-row{display:flex;gap:8px}
+.phone-cc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:9px;padding:10px 10px;color:var(--w);font-family:var(--fb);font-size:0.83rem;width:120px;flex-shrink:0;transition:border-color 0.25s;cursor:pointer;outline:none}
+.phone-cc:focus{border-color:var(--g2)}
+.phone-cc option{background:var(--ink2)}
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--g) 0%,var(--g2) 100%);color:var(--ink);padding:15px;border-radius:10px;font-size:0.9rem;font-weight:700;margin-top:24px;transition:all 0.3s;border:none;letter-spacing:0.05em;text-transform:uppercase;position:relative;overflow:hidden}
+.submit-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--g2),var(--g));opacity:0;transition:opacity 0.3s}
+.submit-btn:hover::before{opacity:1}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,150,12,0.35)}
+.submit-btn span{position:relative;z-index:1}
+.success-state{display:none;text-align:center;padding:48px 32px}
+.success-check{width:72px;height:72px;border-radius:16px;background:var(--g3);border:2px solid var(--g2);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.8rem;animation:popUp 0.5s var(--spring)}
+.success-title{font-family:var(--fd);font-size:1.9rem;font-weight:700;margin-bottom:10px;letter-spacing:0.04em}
+.success-sub{font-size:0.9rem;color:var(--w3);margin-bottom:6px;line-height:1.7;font-weight:300}
+.success-ref{display:inline-block;background:var(--g3);border:1px solid var(--gb);border-radius:8px;padding:8px 20px;font-family:var(--fm);font-size:0.82rem;color:var(--g2);margin:14px 0 28px;letter-spacing:0.06em}
+.success-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* ── CUSTOM SERVICE MODAL ── */
+#cust-ov{position:fixed;inset:0;background:rgba(0,0,0,0.9);backdrop-filter:blur(10px);z-index:3000;display:flex;align-items:center;justify-content:center;padding:36px 16px;opacity:0;pointer-events:none;transition:opacity 0.3s}
+#cust-ov.open{opacity:1;pointer-events:auto}
+#cust-box{background:var(--ink2);border:1px solid var(--gb);border-radius:18px;width:100%;max-width:520px;padding:36px;position:relative;transform:scale(0.94);transition:transform 0.35s var(--spring)}
+#cust-ov.open #cust-box{transform:none}
+.cust-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--w4);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.85rem;transition:all 0.2s}
+.cust-close:hover{background:rgba(255,255,255,0.08);color:var(--w)}
+
+/* ── MARKETPLACE FORM ── */
+#mkt-buyer-success,#mkt-seller-success{display:none;text-align:center;padding:32px 0}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .svc-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .about-grid{gap:48px}
+}
+@media(max-width:900px){
+  .nav-links{display:none}
+  .ham{display:flex}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .hiw-grid{grid-template-columns:1fr;gap:20px}
+  .hiw-connector{display:none}
+  .hiw-step{background:var(--ink3);border-radius:14px;padding:28px}
+  .about-grid{grid-template-columns:1fr}
+  .counters-grid{grid-template-columns:repeat(2,1fr)}
+  .counter-cell:nth-child(2)::after{display:none}
+  .coverage-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .frow{grid-template-columns:1fr}
+  .hero-content{grid-template-columns:1fr}
+  .hero-right{display:none}
+}
+@media(max-width:600px){
+  .sec{padding:64px 5%}
+  .svc-grid{grid-template-columns:1fr}
+  .counters-grid{grid-template-columns:1fr}
+  .counter-cell::after{display:none!important}
+  .why-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-h1,.hero-h1-line2{font-size:2.8rem}
+  .modal-body,.modal-head{padding-left:18px;padding-right:18px}
+}
+</style>
+</head>
+<body>
+
+<div id="ab">
+  <div id="ab-text">🎉 <strong>New:</strong> Now deploying workers to 2 new countries! &nbsp;|&nbsp; <a href="tel:+917985462100">+91-7985-462-100</a></div>
+  <button id="ab-close" onclick="this.parentElement.style.display='none'" aria-label="Dismiss">✕</button>
+</div>
+
+<nav id="nav">
+  <div class="nav-logo">DRS Human Resources Pvt. Ltd.<sup>®</sup></div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#how-it-works">Process</a></li>
+    <li><a href="#coverage">Coverage</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="badge-red">24/7</span>
+    <div class="bell-wrap" id="bell-wrap">
+      <button class="bell-btn" id="bell-btn" onclick="toggleBell()" aria-label="Notifications">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="bell-dot" id="bell-dot"></span>
+      </button>
+      <div class="notif-panel" id="notif-panel">
+        <div class="np-head">
+          <div class="np-title">Notifications</div>
+          <button class="np-clear" id="np-clear" onclick="clearAllNotifs()">Clear All</button>
+        </div>
+        <div class="np-body" id="np-body">
+          <div class="np-empty"><div class="np-empty-icon">🔔</div><div class="np-empty-text">No notifications yet.<br><span style="font-size:0.73rem;opacity:0.6">DRS updates will appear here.</span></div></div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-prime" onclick="openModal()"><span>Get Employees Now</span></button>
+  </div>
+  <div class="ham" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="nav-backdrop" id="nav-bd"></div>
+<div id="mob-nav">
+  <button id="mob-nav-close">✕</button>
+  <a href="#hero" class="mnl">Home</a>
+  <a href="#services" class="mnl">Services</a>
+  <a href="#about" class="mnl">About</a>
+  <a href="#how-it-works" class="mnl">Process</a>
+  <a href="#coverage" class="mnl">Coverage</a>
+  <a href="#contact" class="mnl">Contact</a>
+  <div class="mob-cta"><button class="btn-prime" onclick="openModal();closeMobNav()" style="width:100%;justify-content:center"><span>Get Workers Now</span></button></div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-noise"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+  </div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow"><div class="hero-eyebrow-line"></div><div class="hero-eyebrow-text">🇮🇳 India's #1 Workforce Deployment Agency</div></div>
+      <h1 class="hero-h1">India's Workforce.</h1>
+      <div class="hero-h1-line2">World's Reach.</div>
+      <p class="hero-desc">We place verified, trained, background-checked professionals across 20+ Indian states and 8+ countries. Plumbers to chefs, security guards to caregivers — deployed within 24 hours.</p>
+      <div class="hero-btns">
+        <button class="btn-prime" onclick="openModal()" style="font-size:0.88rem;padding:13px 28px"><span>Book a Employee Now</span></button>
+        <a href="https://wa.me/?text=Hi%20DRS%2C%20I%20need%20a%20worker" target="_blank" class="btn-ghost" style="font-size:0.88rem;padding:13px 28px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Us
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-chip"><div class="trust-chip-dot"></div>Background Verified</div>
+        <div class="trust-chip"><div class="trust-chip-dot"></div>24-Hr Deployment</div>
+        <div class="trust-chip"><div class="trust-chip-dot"></div>Pan-India</div>
+        <div class="trust-chip"><div class="trust-chip-dot"></div>International</div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:460px">
+        <defs>
+          <radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#C9960C" stop-opacity="0.18"/><stop offset="100%" stop-color="#C9960C" stop-opacity="0"/></radialGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <circle cx="240" cy="240" r="220" fill="url(#rg)"/>
+        <circle cx="240" cy="240" r="190" stroke="#C9960C" stroke-width="0.5" stroke-opacity="0.15" stroke-dasharray="3 9"/>
+        <circle cx="240" cy="240" r="148" stroke="#C9960C" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="2 6"/>
+        <circle cx="240" cy="240" r="104" stroke="#C9960C" stroke-width="1.5" stroke-opacity="0.3"/>
+        <circle cx="240" cy="240" r="56" stroke="#C9960C" stroke-width="2" stroke-opacity="0.5" filter="url(#glow)"/>
+        <circle cx="240" cy="240" r="24" fill="#C9960C" fill-opacity="0.15"/>
+        <circle cx="240" cy="52" r="6" fill="#C9960C" fill-opacity="0.7" filter="url(#glow)"/>
+        <circle cx="428" cy="240" r="6" fill="#C9960C" fill-opacity="0.7" filter="url(#glow)"/>
+        <circle cx="240" cy="428" r="6" fill="#C9960C" fill-opacity="0.7" filter="url(#glow)"/>
+        <circle cx="52" cy="240" r="6" fill="#C9960C" fill-opacity="0.7" filter="url(#glow)"/>
+        <circle cx="374" cy="106" r="4" fill="#C9960C" fill-opacity="0.4"/>
+        <circle cx="374" cy="374" r="4" fill="#C9960C" fill-opacity="0.4"/>
+        <circle cx="106" cy="374" r="4" fill="#C9960C" fill-opacity="0.4"/>
+        <circle cx="106" cy="106" r="4" fill="#C9960C" fill-opacity="0.4"/>
+        <line x1="52" y1="52" x2="184" y2="184" stroke="#C9960C" stroke-width="0.5" stroke-opacity="0.12"/>
+        <line x1="428" y1="52" x2="296" y2="184" stroke="#C9960C" stroke-width="0.5" stroke-opacity="0.12"/>
+        <line x1="52" y1="428" x2="184" y2="296" stroke="#C9960C" stroke-width="0.5" stroke-opacity="0.12"/>
+        <line x1="428" y1="428" x2="296" y2="296" stroke="#C9960C" stroke-width="0.5" stroke-opacity="0.12"/>
+        <text x="240" y="256" text-anchor="middle" font-size="44" fill="#C9960C" opacity="0.85" filter="url(#glow)">🌍</text>
+        <circle cx="340" cy="148" r="3" fill="#C9960C" fill-opacity="0.5" filter="url(#glow)"/>
+        <circle cx="390" cy="310" r="3" fill="#C9960C" fill-opacity="0.5" filter="url(#glow)"/>
+        <circle cx="148" cy="360" r="3" fill="#C9960C" fill-opacity="0.5" filter="url(#glow)"/>
+        <circle cx="96" cy="164" r="3" fill="#C9960C" fill-opacity="0.5" filter="url(#glow)"/>
+        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 240 240" to="360 240 240" dur="80s" repeatCount="indefinite" additive="sum"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- TRUST STRIP -->
+<div id="trust">
+  <div class="trust-track">
+    <div class="trust-chip-strip"><span class="ti">🛡️</span> Police Verified Workers</div><div class="trust-sep">◆</div>
+    <div class="trust-chip-strip"><span class="ti">📋</span> Registered Pvt. Ltd.</div><div class="trust-sep">◆</div>
+    <div class="trust-chip-strip"><span class="ti">⚡</span> 24-Hour Deployment</div><div class="trust-sep">◆</div>
+    <div class="trust-chip-strip"><span class="ti">🔄</span> Free Replacement Guarantee</div><div class="trust-sep">◆</div>
+    <div class="trust-chip-strip"><span class="ti">🌍</span> International Placements</div><div class="trust-sep">◆</div>
+    <div class="trust-chip-strip"><span class="ti">🛡️</span> Police Verified Workers</div><div class="trust-sep">◆</div>
+    <div class="trust-chip-strip"><span class="ti">📋</span> Registered Pvt. Ltd.</div><div class="trust-sep">◆</div>
+    <div class="trust-chip-strip"><span class="ti">⚡</span> 24-Hour Deployment</div><div class="trust-sep">◆</div>
+    <div class="trust-chip-strip"><span class="ti">🔄</span> Free Replacement Guarantee</div><div class="trust-sep">◆</div>
+    <div class="trust-chip-strip"><span class="ti">🌍</span> International Placements</div><div class="trust-sep">◆</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="sec">
+  <div class="sec-inner">
+    <div class="sec-eyebrow fu"><div class="sec-eyebrow-line"></div><div class="sec-eyebrow-label">Our Services</div></div>
+    <h2 class="sec-title fu d1">20+ Professional <span>Services</span></h2>
+    <p class="sec-sub fu d2">From home maintenance to international deployment — every worker verified, trained, and ready within 24 hours.</p>
+    <div class="svc-grid" id="svc-grid"></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="sec sec-alt">
+  <div class="sec-inner" style="text-align:center">
+    <div class="sec-eyebrow fu" style="justify-content:center"><div class="sec-eyebrow-line"></div><div class="sec-eyebrow-label">The Process</div><div class="sec-eyebrow-line"></div></div>
+    <h2 class="sec-title fu d1">How It <span>Works</span></h2>
+    <p class="sec-sub fu d2" style="margin:0 auto">Simple. Fast. Reliable.</p>
+    <div class="hiw-grid">
+      <div class="hiw-step fu d2"><div class="hiw-num">01</div><div class="hiw-icon">🔍</div><div class="hiw-name">Choose Your Service</div><p class="hiw-desc">Browse 20+ professional services tailored for homes, offices, factories & international needs.</p></div>
+      <div class="hiw-connector fi d3"><div class="hiw-connector-inner"></div></div>
+      <div class="hiw-step fu d3"><div class="hiw-num">02</div><div class="hiw-icon">📝</div><div class="hiw-name">Fill a Quick Form</div><p class="hiw-desc">Tell us your requirements, location & schedule. Our team reviews within 30 minutes.</p></div>
+      <div class="hiw-connector fi d4"><div class="hiw-connector-inner"></div></div>
+      <div class="hiw-step fu d4"><div class="hiw-num">03</div><div class="hiw-icon">✅</div><div class="hiw-name">Worker Deployed</div><p class="hiw-desc">Your verified professional arrives — background-checked, skilled, and ready to deliver.</p></div>
+    </div>
+    <div class="hiw-badge-wrap fu d5"><div class="hiw-badge">⚡ Average deployment time: Under 24 hours</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="sec-inner">
+    <div class="about-grid">
+      <div>
+        <div class="sec-eyebrow fu"><div class="sec-eyebrow-line"></div><div class="sec-eyebrow-label">Who We Are</div></div>
+        <h2 class="sec-title fu d1">About DRS <span>Human Resources</span></h2>
+        <div class="about-heading fu d2">Our Story</div>
+        <p class="about-para fu d3">DRS Human Resources Pvt. Ltd. was born from a single, powerful belief — that India's skilled workforce deserves global opportunities, and the world deserves India's finest professionals. Founded in Varanasi, Uttar Pradesh, we bridge the critical gap between millions of skilled Indian professionals and the employers who need them.</p>
+        <div class="about-heading fu d3">Our Vision</div>
+        <p class="about-para fu d4">To become Asia's most trusted workforce solutions company — a name synonymous with reliability, dignity, and excellence in human deployment. We believe that when the right worker meets the right opportunity, both lives transform.</p>
+        <div class="about-heading fu d4">What Makes Us Different</div>
+        <ul class="about-bullets fu d5">
+          <li class="about-bullet"><span class="about-bullet-mark">◆</span><span><strong>Triple-Layer Verification:</strong> Aadhaar, police clearance & skill assessment before deployment.</span></li>
+          <li class="about-bullet"><span class="about-bullet-mark">◆</span><span><strong>Dedicated Relationship Managers:</strong> A real human assigned to every client, 24/7.</span></li>
+          <li class="about-bullet"><span class="about-bullet-mark">◆</span><span><strong>Scale Without Compromise:</strong> 1 plumber in Varanasi or 50 workers in Dubai — same precision.</span></li>
+          <li class="about-bullet"><span class="about-bullet-mark">◆</span><span><strong>Zero Hidden Charges:</strong> Clear pricing. No surprises. Ever.</span></li>
+          <li class="about-bullet"><span class="about-bullet-mark">◆</span><span><strong>Worker Welfare First:</strong> Fair wages, safe conditions, legal compliance in every deployment.</span></li>
+        </ul>
+        <div class="about-mission fu d5">
+          <div class="about-mission-lbl">Our Mission</div>
+          <div class="about-mission-text">"To connect India's finest skilled professionals with employers across the nation and the world — with speed, integrity, and the relentless pursuit of excellence."</div>
+        </div>
+        <div class="fu d6" style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn-prime" onclick="openModal()"><span>Book a Worker Now</span></button>
+          <a href="tel:+917985462100" class="btn-ghost">📞 Call Us</a>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="about-stat-panel fu d2">
+          <div class="stat-grid-2x2">
+            <div class="stat-cell"><span class="stat-cell-num">2024</span><div class="stat-cell-lbl">Founded</div></div>
+            <div class="stat-cell"><span class="stat-cell-num">500+</span><div class="stat-cell-lbl">Verified Workers</div></div>
+            <div class="stat-cell"><span class="stat-cell-num">20+</span><div class="stat-cell-lbl">States Covered</div></div>
+            <div class="stat-cell"><span class="stat-cell-num">8+</span><div class="stat-cell-lbl">Countries</div></div>
+          </div>
+          <div class="about-reg-badge">
+            <span style="font-size:1.5rem">🏛️</span>
+            <div class="about-reg-text"><strong>Pvt. Ltd. Registered Company</strong>Reg. No. DRS-UP-2024-PVT-00847</div>
+          </div>
+        </div>
+        <div class="about-certs fu d3">
+          <div class="about-certs-title">Core Commitments</div>
+          <div class="cert-list">
+            <div class="cert-item"><span class="cert-icon">🛡️</span>Police & Aadhaar Verified</div>
+            <div class="cert-item"><span class="cert-icon">⚡</span>24-Hour Deployment SLA</div>
+            <div class="cert-item"><span class="cert-icon">🔄</span>Free Replacement Guarantee</div>
+            <div class="cert-item"><span class="cert-icon">📋</span>Legally Compliant Contracts</div>
+            <div class="cert-item"><span class="cert-icon">🌍</span>International Visa Assistance</div>
+            <div class="cert-item"><span class="cert-icon">💬</span>24/7 WhatsApp Support</div>
+          </div>
+        </div>
+        <div class="about-hq fu d4">
+          <div class="about-certs-title" style="margin-bottom:14px">Head Office</div>
+          <div class="hq-row">📍 <span>
+Kailguan Road, Lalitpur, Uttar Pradesh — 284403</span></div>
+          <div class="hq-row">📞 <a href="tel:+917985462100">+91-7985-462-100</a></div>
+          <div class="hq-row">📧 <a href="mailto:info@drshrc.com">info@drshrc.com</a></div>
+          <div class="hq-row">⏰ <span>Open 24/7 · 365 Days a Year</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTERS -->
+<section id="counters" class="sec-dark sec" style="padding:0">
+  <div class="counters-grid">
+    <div class="counter-cell fu"><span class="counter-num" data-target="10000" data-suf="+">0</span><div class="counter-lbl">Happy Clients</div></div>
+    <div class="counter-cell fu d2"><span class="counter-num" data-target="500" data-suf="+">0</span><div class="counter-lbl">Verified Workers</div></div>
+    <div class="counter-cell fu d3"><span class="counter-num" data-target="20" data-suf="+">0</span><div class="counter-lbl">States Covered</div></div>
+    <div class="counter-cell fu d4"><span class="counter-num" data-target="8" data-suf="+">0</span><div class="counter-lbl">Countries Served</div></div>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section id="coverage" class="sec sec-alt">
+  <div class="sec-inner">
+    <div class="sec-eyebrow fu"><div class="sec-eyebrow-line"></div><div class="sec-eyebrow-label">Reach</div></div>
+    <h2 class="sec-title fu d1">We Go Where <span>You Need Us</span></h2>
+    <p class="sec-sub fu d2">Pan-India deployment across all major states. International placements in Gulf countries, Southeast Asia, and beyond.</p>
+    <div class="coverage-grid">
+      <div class="fu d2">
+        <div class="cov-label">🇮🇳 India — States We Serve</div>
+        <div class="pill-wrap">
+          <span class="pill">Uttar Pradesh</span><span class="pill">Delhi NCR</span><span class="pill">Mumbai</span><span class="pill">Bangalore</span><span class="pill">Hyderabad</span><span class="pill">Chennai</span><span class="pill">Kolkata</span><span class="pill">Pune</span><span class="pill">Ahmedabad</span><span class="pill">Jaipur</span><span class="pill">Lucknow</span><span class="pill">Bhopal</span><span class="pill">Patna</span><span class="pill">Surat</span><span class="pill">Nagpur</span><span class="pill" style="background:var(--g3);border-color:var(--g2);color:var(--g2)">+ 10 More States</span>
+        </div>
+      </div>
+      <div class="fu d3">
+        <div class="cov-label">🌍 International — Countries We Deploy To</div>
+        <div class="pill-wrap">
+          <span class="pill pill-intl">🇦🇪 UAE</span><span class="pill pill-intl">🇸🇦 Saudi Arabia</span><span class="pill pill-intl">🇶🇦 Qatar</span><span class="pill pill-intl">🇰🇼 Kuwait</span><span class="pill pill-intl">🇧🇭 Bahrain</span><span class="pill pill-intl">🇸🇬 Singapore</span><span class="pill pill-intl">🇲🇾 Malaysia</span><span class="pill pill-intl">🇴🇲 Oman</span>
+        </div>
+      </div>
+      <div class="cov-cta fu d4">
+        <div class="cov-cta-text"><strong>Need workers in a location not listed?</strong><br>Call us. If there's a need, DRS will find a way.</div>
+        <a href="tel:+917985462100" class="btn-prime" style="text-decoration:none"><span>📞 Call Us Now</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY DRS -->
+<section id="why-drs" class="sec">
+  <div class="sec-inner">
+    <div class="sec-eyebrow fu"><div class="sec-eyebrow-line"></div><div class="sec-eyebrow-label">Advantages</div></div>
+    <h2 class="sec-title fu d1">Why Thousands <span>Choose DRS</span></h2>
+    <div class="why-grid">
+      <div class="why-card fu d1"><span class="why-icon">🛡️</span><div class="why-title">Background Verified</div><p class="why-desc">Every worker undergoes Aadhaar verification, police clearance, and rigorous skill assessment before joining our network.</p></div>
+      <div class="why-card fu d2"><span class="why-icon">⚡</span><div class="why-title">24-Hour Deployment</div><p class="why-desc">Emergency or scheduled, we deploy qualified workers within 24 hours of your request — guaranteed, every time.</p></div>
+      <div class="why-card fu d3"><span class="why-icon">🌍</span><div class="why-title">Pan-India + International</div><p class="why-desc">From small towns to global cities, our network covers 20+ Indian states and 8+ countries worldwide.</p></div>
+      <div class="why-card fu d4"><span class="why-icon">🔄</span><div class="why-title">Free Replacement</div><p class="why-desc">Not satisfied? We replace the worker at zero cost. Your satisfaction is our unconditional guarantee.</p></div>
+      <div class="why-card fu d5"><span class="why-icon">📞</span><div class="why-title">Dedicated Support</div><p class="why-desc">A real human relationship manager is assigned to every client — accountable, accessible, and always on call.</p></div>
+      <div class="why-card fu d6"><span class="why-icon">💰</span><div class="why-title">Zero Hidden Charges</div><p class="why-desc">What we quote is what you pay. No surprises, no add-ons, no fine print. Radical transparency always.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec sec-alt">
+  <div class="sec-inner">
+    <div class="sec-eyebrow fu"><div class="sec-eyebrow-line"></div><div class="sec-eyebrow-label">Client Stories</div></div>
+    <h2 class="sec-title fu d1">What Our <span>Clients Say</span></h2>
+    <div class="testi-grid">
+      <div class="testi-card fu d1"><div class="testi-quote">"</div><div class="testi-stars">★★★★★</div><p class="testi-text">We needed an electrician urgently for our new office in Noida. DRS sent a verified professional within 6 hours. Outstanding quality and completely transparent pricing.</p><div class="testi-client"><div class="testi-avatar">RS</div><div><div class="testi-name">Rajesh Sharma</div><div class="testi-role">Business Owner, Noida</div></div></div></div>
+      <div class="testi-card fu d2"><div class="testi-quote">"</div><div class="testi-stars">★★★★★</div><p class="testi-text">Hired a cook through DRS for our home in Dubai. From form submission to deployment — 4 days. The cook has been with us 6 months now. Absolutely incredible service.</p><div class="testi-client"><div class="testi-avatar">PM</div><div><div class="testi-name">Priya Menon</div><div class="testi-role">Homemaker, Dubai</div></div></div></div>
+      <div class="testi-card fu d3"><div class="testi-quote">"</div><div class="testi-stars">★★★★★</div><p class="testi-text">We placed 12 warehouse workers through DRS for our Gujarat factory. All verified, all professional, all on time. DRS is now our exclusive staffing partner.</p><div class="testi-client"><div class="testi-avatar">AP</div><div><div class="testi-name">Anand Patel</div><div class="testi-role">Factory Manager, Ahmedabad</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec">
+  <div class="sec-inner">
+    <div class="sec-eyebrow fu" style="justify-content:center"><div class="sec-eyebrow-line"></div><div class="sec-eyebrow-label">FAQ</div><div class="sec-eyebrow-line"></div></div>
+    <h2 class="sec-title fu d1" style="text-align:center">Frequently Asked <span>Questions</span></h2>
+    <div class="faq-list fu d2" id="faq-list"></div>
+  </div>
+</section>
+
+<!-- MARKETPLACE -->
+<section id="marketplace">
+  <div style="padding:80px 5% 0;max-width:1300px;margin:0 auto;text-align:center">
+    <div class="sec-eyebrow fu" style="justify-content:center"><div class="sec-eyebrow-line"></div><div class="sec-eyebrow-label">DRS Marketplace</div><div class="sec-eyebrow-line"></div></div>
+    <h2 class="sec-title fu d1">Connect. Work. <span>Grow.</span></h2>
+    <p class="fu d2" style="color:var(--w3);max-width:520px;margin:0 auto;line-height:1.75;font-size:0.95rem;font-weight:300">Whether you're a skilled professional looking for work or someone who needs a service — DRS Marketplace connects you directly.</p>
+    <div class="mkt-toggle-wrap fu d3">
+      <div class="mkt-toggle">
+        <button class="mkt-tab active" id="mtab-buyer" onclick="swMkt('buyer')">🛒 I Need a Service</button>
+        <button class="mkt-tab" id="mtab-seller" onclick="swMkt('seller')">💼 I Offer a Service</button>
+      </div>
+    </div>
+  </div>
+  <div class="mkt-form-section">
+    <div class="mkt-fw active" id="mkt-buyer">
+      <div class="mkt-card fu">
+        <h3 class="mkt-card-title">Find a Professional</h3>
+        <p class="mkt-card-sub">Tell us what you need — we'll match you with the right verified worker within 2 hours.</p>
+        <div class="mkt-divider"></div>
+        <form id="mb-form" novalidate>
+          <div class="frow"><div class="fg" id="mb-fg-name"><label>Full Name <span class="req">*</span></label><input class="fi-inp" id="mb-name" placeholder="Your name"><div class="ferr">Required</div></div><div class="fg" id="mb-fg-phone"><label>WhatsApp Number <span class="req">*</span></label><input class="fi-inp" id="mb-phone" placeholder="+91 98765 43210"><div class="ferr">Min 8 digits</div></div></div>
+          <div class="frow"><div class="fg" id="mb-fg-service"><label>Service Needed <span class="req">*</span></label><select class="fi-inp" id="mb-service" onchange="handleOther(this,'mb-other-wrap')"><option value="">— Select —</option><option>Manpower Outsourcing</option><option>AC Technician</option><option>Electrician</option><option>Plumber</option><option>Cook / Chef</option><option>House Cleaner</option><option>Security Guard</option><option>Personal Driver</option><option>Elderly Caretaker</option><option>Babysitter / Nanny</option><option>Carpenter</option><option>Painter</option><option>International Placement</option><option>Other / Custom</option></select><div class="ferr">Please select</div></div><div class="fg" id="mb-fg-city"><label>City <span class="req">*</span></label><input class="fi-inp" id="mb-city" placeholder="e.g. Lucknow"><div class="ferr">Required</div></div></div>
+          <div class="fg" id="mb-other-wrap" style="display:none"><label>Please Specify <span class="req">*</span></label><input class="fi-inp" id="mb-other" placeholder="Describe the service you need..."></div>
+          <div class="frow"><div class="fg"><label>Budget</label><select class="fi-inp" id="mb-budget"><option value="">— Select —</option><option>Below ₹500</option><option>₹500–₹2,000</option><option>₹2,000–₹10,000</option><option>₹10,000–₹50,000</option><option>₹50,000+</option><option>To Be Discussed</option></select></div><div class="fg"><label>When Needed?</label><select class="fi-inp" id="mb-when"><option value="">— Select —</option><option>Today / Emergency</option><option>Within 24 Hours</option><option>This Week</option><option>Flexible</option></select></div></div>
+          <div class="fg"><label>Describe Your Requirement</label><textarea class="fi-inp" id="mb-desc" rows="3" placeholder="e.g. Need AC technician for 2 split ACs at my home in Varanasi. Available from 10 AM..."></textarea></div>
+          <button type="submit" class="submit-btn"><span>Submit — Get Matched Within 2 Hours</span></button>
+        </form>
+        <div id="mkt-buyer-success" style="text-align:center;padding:28px 0">
+          <div style="font-size:2.5rem;margin-bottom:12px">✅</div>
+          <h3 style="font-family:var(--fd);font-size:1.5rem;font-weight:700;margin-bottom:8px;letter-spacing:0.04em">Request Received!</h3>
+          <p style="color:var(--w3);font-size:0.87rem">Our team will contact you on WhatsApp within 2 hours with matched professionals.</p>
+          <div id="mb-refid" style="display:inline-block;margin-top:14px;background:var(--g3);border:1px solid var(--gb);border-radius:8px;padding:8px 20px;font-family:var(--fm);font-size:0.78rem;color:var(--g2);letter-spacing:0.06em"></div>
+        </div>
+      </div>
+    </div>
+    <div class="mkt-fw" id="mkt-seller">
+      <div class="mkt-card fu">
+        <h3 class="mkt-card-title">List Your Skills</h3>
+        <p class="mkt-card-sub">Register as a DRS Marketplace professional. Get matched with clients who need your expertise.</p>
+        <div class="mkt-divider"></div>
+        <form id="ms-form" novalidate>
+          <div class="frow"><div class="fg" id="ms-fg-name"><label>Full Name <span class="req">*</span></label><input class="fi-inp" id="ms-name" placeholder="Your full name"><div class="ferr">Required</div></div><div class="fg" id="ms-fg-phone"><label>WhatsApp Number <span class="req">*</span></label><input class="fi-inp" id="ms-phone" placeholder="+91 98765 43210"><div class="ferr">Min 8 digits</div></div></div>
+          <div class="frow"><div class="fg" id="ms-fg-skill"><label>Primary Skill <span class="req">*</span></label><select class="fi-inp" id="ms-skill" onchange="handleOther(this,'ms-other-wrap')"><option value="">— Select —</option><option>Manpower Outsourcing</option><option>AC Technician</option><option>Electrician</option><option>Plumber</option><option>Cook / Chef</option><option>House Cleaner</option><option>Security Guard</option><option>Personal Driver</option><option>Carpenter</option><option>Painter</option><option>Pest Control</option><option>Gardener</option><option>Mason / Mistri</option><option>Other / Custom Skill</option></select><div class="ferr">Please select</div></div><div class="fg"><label>Experience</label><select class="fi-inp" id="ms-exp"><option value="">— Select —</option><option>Less than 1 year</option><option>1–2 years</option><option>3–5 years</option><option>5–10 years</option><option>10+ years</option></select></div></div>
+          <div class="fg" id="ms-other-wrap" style="display:none"><label>Specify Your Skill <span class="req">*</span></label><input class="fi-inp" id="ms-other" placeholder="e.g. Handloom weaver, Marble polishing expert..."></div>
+          <div class="frow"><div class="fg" id="ms-fg-city"><label>Your City <span class="req">*</span></label><input class="fi-inp" id="ms-city" placeholder="e.g. Varanasi"><div class="ferr">Required</div></div><div class="fg"><label>Expected Daily Rate</label><select class="fi-inp" id="ms-rate"><option value="">— Select —</option><option>Below ₹500/day</option><option>₹500–₹1,000/day</option><option>₹1,000–₹2,000/day</option><option>₹2,000–₹5,000/day</option><option>₹5,000+/day</option><option>Negotiable</option></select></div></div>
+          <div class="fg"><label>Availability</label><div class="radio-grp"><label class="rl"><input type="radio" name="ms-av" value="Full-time"> Full-time</label><label class="rl"><input type="radio" name="ms-av" value="Part-time"> Part-time</label><label class="rl"><input type="radio" name="ms-av" value="Weekends"> Weekends</label><label class="rl"><input type="radio" name="ms-av" value="On-call"> On-call</label></div></div>
+          <div class="fg"><label>About Yourself <span class="req">*</span></label><textarea class="fi-inp" id="ms-bio" rows="3" placeholder="e.g. Certified electrician with 8 years experience across residential and commercial projects in UP..."></textarea></div>
+          <button type="submit" class="submit-btn"><span>Register as DRS Marketplace Professional</span></button>
+        </form>
+        <div id="mkt-seller-success" style="text-align:center;padding:28px 0">
+          <div style="font-size:2.5rem;margin-bottom:12px">🎉</div>
+          <h3 style="font-family:var(--fd);font-size:1.5rem;font-weight:700;margin-bottom:8px;letter-spacing:0.04em">Profile Submitted!</h3>
+          <p style="color:var(--w3);font-size:0.87rem">Our team will review and contact you within 24 hours to verify your credentials.</p>
+          <div id="ms-refid" style="display:inline-block;margin-top:14px;background:var(--g3);border:1px solid var(--gb);border-radius:8px;padding:8px 20px;font-family:var(--fm);font-size:0.78rem;color:var(--g2);letter-spacing:0.06em"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-sec">
+  <div class="cta-inner">
+    <h2 class="fu">Ready to Find the <span style="background:linear-gradient(135deg,var(--g),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Right Worker?</span></h2>
+    <p class="fu d1">Join 10,000+ satisfied clients across India and beyond. Book your first verified worker today.</p>
+    <div class="cta-btns fu d2">
+      <button class="btn-prime" onclick="openModal()" style="font-size:0.88rem;padding:13px 28px"><span>Book Now →</span></button>
+      <a href="https://wa.me/?text=Hi%20DRS%2C%20I%20need%20a%20worker" target="_blank" class="btn-ghost" style="font-size:0.88rem;padding:13px 28px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership" class="sec sec-dark">
+  <div class="sec-inner">
+    <div class="sec-eyebrow fu" style="justify-content:center"><div class="sec-eyebrow-line"></div><div class="sec-eyebrow-label">Our Leadership</div><div class="sec-eyebrow-line"></div></div>
+    <h2 class="sec-title fu d1" style="text-align:center">The <span>Directors</span></h2>
+    <p class="fu d2" style="text-align:center;color:var(--w3);max-width:520px;margin:0 auto 56px;line-height:1.75;font-size:0.95rem;font-weight:300">Visionary leaders who built DRS from the ground up with a singular commitment — to transform India's workforce landscape.</p>
+    <div class="directors-grid">
+      <div class="director-card fu d1">
+        <div class="director-avatar">DS</div>
+        <div class="director-name">Mr. Devendra Singh</div>
+        <div class="director-title">Director &amp; Co-Founder</div>
+        <div class="director-divider"></div>
+        <p class="director-bio">With a deep-rooted vision for India's workforce potential, Mr. Devendra Singh co-founded DRS with an unwavering belief that every skilled professional deserves a world-class opportunity. His strategic leadership drives DRS's national and international expansion.</p>
+        <div class="director-tags"><span class="dtag">Strategic Vision</span><span class="dtag">Operations</span><span class="dtag">Leadership</span></div>
+      </div>
+      <div class="director-card fu d2">
+        <div class="director-avatar">RJ</div>
+        <div class="director-name">Mr. Rohit Jha</div>
+        <div class="director-title">Director &amp; Co-Founder</div>
+        <div class="director-divider"></div>
+        <p class="director-bio">Mr. Rohit Jha brings exceptional expertise in workforce management and client relations. His dedication to building trust-based partnerships has been instrumental in establishing DRS as a premier name in workforce deployment across India and beyond.</p>
+        <div class="director-tags"><span class="dtag">Client Relations</span><span class="dtag">Workforce Mgmt</span><span class="dtag">Growth</span></div>
+      </div>
+      <div class="director-card fu d3">
+        <div class="director-avatar">SY</div>
+        <div class="director-name">Mr. Shivam Yadav</div>
+        <div class="director-title">Director &amp; Co-Founder</div>
+        <div class="director-divider"></div>
+        <p class="director-bio">Mr. Shivam Yadav leads DRS's operations and quality assurance with meticulous precision. His hands-on approach to worker verification, training standards, and deployment protocols ensures DRS consistently delivers excellence to every client.</p>
+        <div class="director-tags"><span class="dtag">Quality Assurance</span><span class="dtag">Deployment Ops</span><span class="dtag">Training</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">DRS Human Resources Pvt. Ltd.<sup style="font-size:0.5em">®</sup></div>
+      <div class="footer-tag">"India's Workforce. World's Reach."</div>
+      <p class="footer-desc">Connecting India's finest skilled professionals with clients across the nation and beyond. Verified. Trained. Deployed Anywhere.</p>
+      <div class="socials">
+        <a href="https://wa.me/" class="social-btn" aria-label="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        <a href="#" class="social-btn" aria-label="Instagram">📷</a>
+        <a href="#" class="social-btn" aria-label="Facebook">📘</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">💼</a>
+        <a href="#" class="social-btn" aria-label="YouTube">▶️</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <ul class="footer-links"><li><a href="#hero">Home</a></li><li><a href="#services">Services</a></li><li><a href="#about">About Us</a></li><li><a href="#how-it-works">How It Works</a></li><li><a href="#coverage">Coverage</a></li><li><a href="#marketplace">Marketplace</a></li><li><a href="#contact">Contact</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Our Services</div>
+      <ul class="footer-links"><li><a href="#" onclick="openModal('AC Technician');return false">AC Technician</a></li><li><a href="#" onclick="openModal('Electrician');return false">Electrician</a></li><li><a href="#" onclick="openModal('Plumber');return false">Plumber</a></li><li><a href="#" onclick="openModal('Cook / Chef');return false">Cook / Chef</a></li><li><a href="#" onclick="openModal('Security Guard');return false">Security Guard</a></li><li><a href="#" onclick="openModal('Personal Driver');return false">Driver</a></li><li><a href="#services" style="color:var(--g2)">View All →</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact Us</div>
+      <div class="contact-row">📍 <span>Kailguan Road, Lalitpur, Uttar Pradesh — 284403</span></div>
+      <div class="contact-row">📞 <a href="tel:+917985462100">+91-7985-462-100</a></div>
+      <div class="contact-row">📧 <a href="mailto:info@drshrc.com">info@drshrc.com</a></div>
+      <div class="contact-row">⏰ <span>24/7 · 365 Days</span></div>
+      <a href="https://wa.me/?text=Hi%20DRS" target="_blank" class="wa-footer-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Chat on WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 DRS Human Resources Pvt. Ltd. All Rights Reserved. | CIN: U74999UP2024PTC000847</span><span style="display:flex;gap:18px"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></span></div>
+</footer>
+
+<!-- FLOATERS -->
+<div id="wa-float"><a href="https://wa.me/?text=Hi%20DRS%2C%20I%20need%20to%20book%20a%20worker" target="_blank" aria-label="WhatsApp"><svg class="wa-svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a><div class="wa-tip">Chat on WhatsApp</div></div>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<!-- NOTIF BAR -->
+<div id="notif-bar">
+  <div class="nb-content"><div class="nb-icon" id="nb-icon">🔔</div><div><div class="nb-title" id="nb-title"></div><div class="nb-body" id="nb-body"></div></div></div>
+  <div style="display:flex;gap:8px;flex-shrink:0"><button class="nb-cta" id="nb-cta" onclick="handleNBCTA()">View</button><button class="nb-close" onclick="closeNB()">✕</button></div>
+</div>
+
+<!-- PUSH PROMPT -->
+<div id="push-prompt"><div class="pp-head"><div class="pp-emoji">🔔</div><div><div class="pp-title">Stay Updated!</div><div class="pp-sub">Get instant alerts for DRS offers, updates, and urgent worker availability.</div></div></div><div class="pp-btns"><button class="pp-allow" onclick="allowPush()">Allow Notifications</button><button class="pp-deny" onclick="denyPush()">Not now</button></div></div>
+
+<!-- CUSTOM MODAL -->
+<div id="cust-ov" onclick="if(event.target===this)closeCust()">
+  <div id="cust-box">
+    <button class="cust-close" onclick="closeCust()">✕</button>
+    <div style="font-size:1.8rem;margin-bottom:12px">✏️</div>
+    <h3 style="font-family:var(--fd);font-size:1.6rem;font-weight:700;margin-bottom:6px;letter-spacing:0.04em">Custom Service Request</h3>
+    <p style="font-size:0.83rem;color:var(--w3);margin-bottom:20px;font-weight:300">Can't find your service? Describe what you need — we'll find the right professional.</p>
+    <div style="height:1px;background:linear-gradient(90deg,var(--gb),transparent);margin-bottom:20px"></div>
+    <form id="cust-form" novalidate>
+      <div class="frow"><div class="fg" id="cf-fg-name"><label>Your Name <span class="req">*</span></label><input class="fi-inp" id="cf-name" placeholder="Full name"><div class="ferr">Required</div></div><div class="fg" id="cf-fg-phone"><label>WhatsApp <span class="req">*</span></label><input class="fi-inp" id="cf-phone" placeholder="+91 98765 43210"><div class="ferr">Min 8 digits</div></div></div>
+      <div class="fg" id="cf-fg-city"><label>Your City <span class="req">*</span></label><input class="fi-inp" id="cf-city" placeholder="e.g. Lucknow"><div class="ferr">Required</div></div>
+      <div class="fg" id="cf-fg-desc"><label>Describe Your Requirement <span class="req">*</span></label><textarea class="fi-inp" id="cf-desc" rows="4" placeholder="e.g. Need someone skilled in repairing traditional handloom machines. Location: Varanasi..."></textarea><div class="ferr">Please describe (min 10 chars)</div></div>
+      <div class="fg"><label>When do you need it?</label><select class="fi-inp" id="cf-when"><option value="">— Select —</option><option>Today / Emergency</option><option>Within 24 Hours</option><option>This Week</option><option>Flexible</option></select></div>
+      <button type="submit" class="submit-btn"><span>Submit Custom Request →</span></button>
+    </form>
+    <div id="cust-success" style="display:none;text-align:center;padding:20px 0"><div style="font-size:2.5rem;margin-bottom:12px">✅</div><h3 style="font-family:var(--fd);font-size:1.5rem;font-weight:700;margin-bottom:8px">Request Submitted!</h3><p style="color:var(--w3);font-size:0.85rem">We'll contact you on WhatsApp within 2 hours with a custom solution.</p></div>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div id="modal-ov" onclick="if(event.target===this)closeModal()">
+  <div id="modal-box">
+    <div class="modal-head">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h2 class="modal-title">Request a <span style="background:linear-gradient(135deg,var(--g),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Verified Worker</span></h2>
+      <p class="modal-sub">Fill in your details — our team will contact you within 2 hours via WhatsApp or phone.</p>
+      <div class="modal-gold-line"></div>
+    </div>
+    <div class="modal-body">
+      <form id="booking-form" novalidate>
+        <div class="form-sec-lbl">A — Your Information</div>
+        <div class="frow"><div class="fg" id="fg-name"><label>Full Name <span class="req">*</span></label><input type="text" class="fi-inp" id="f-name" placeholder="Rajesh Kumar Singh" autocomplete="name"><div class="ferr">Please enter your name</div></div><div class="fg" id="fg-email"><label>Email Address <span class="req">*</span></label><input type="email" class="fi-inp" id="f-email" placeholder="rajesh@example.com" autocomplete="email"><div class="ferr">Valid email required</div></div></div>
+        <div class="fg" id="fg-phone"><label>WhatsApp Number <span class="req">*</span></label><div class="phone-row"><select class="phone-cc" id="f-cc"><option value="+91">🇮🇳 +91</option><option value="+971">🇦🇪 +971</option><option value="+966">🇸🇦 +966</option><option value="+974">🇶🇦 +974</option><option value="+65">🇸🇬 +65</option><option value="+60">🇲🇾 +60</option></select><input type="tel" class="fi-inp" id="f-phone" placeholder="98765 43210" style="flex:1" autocomplete="tel"></div><div class="ferr">Min 8 digits required</div></div>
+        <div class="fg"><label>Alternate Phone (Optional)</label><input type="tel" class="fi-inp" id="f-altphone" placeholder="Alternate number"></div>
+        <div class="form-sec-lbl">B — Service Details</div>
+        <div class="frow"><div class="fg" id="fg-service"><label>Service Required <span class="req">*</span></label><select class="fi-inp" id="f-service"><option value="">— Select a Service —</option><option>Manpower Outsourcing</option><option>AC Technician</option><option>Electrician</option><option>Plumber</option><option>Cook / Chef</option><option>House Cleaner</option><option>Security Guard</option><option>Personal Driver</option><option>Elderly Caretaker</option><option>Babysitter / Nanny</option><option>Carpenter</option><option>Painter</option><option>Pest Control</option><option>Gardener</option><option>Mason / Mistri</option><option>Office Boy</option><option>Laundry Worker</option><option>Packers & Movers</option><option>Factory / Warehouse Helper</option><option>Inter-State Deployment</option><option>International Placement</option><option>Other / Custom</option></select><div class="ferr">Please select</div></div><div class="fg"><label>Sub-type / Specify</label><select class="fi-inp" id="f-subtype"><option value="">— Select service first —</option></select></div></div>
+        <div class="frow"><div class="fg" id="fg-workers"><label>Number of Workers <span class="req">*</span></label><input type="number" class="fi-inp" id="f-workers" min="1" max="100" placeholder="1" value="1"><div class="ferr">1–100 workers</div></div><div class="fg"><label>Urgency <span class="req">*</span></label><select class="fi-inp" id="f-urgency"><option value="">— Select —</option><option>Emergency (Today)</option><option>Within 24 Hours</option><option>This Week</option><option>Scheduled Date</option></select></div></div>
+        <div class="fg" id="f-other-wrap" style="display:none"><label>Please Describe Your Service Requirement <span class="req">*</span></label><textarea class="fi-inp" id="f-other-service" rows="2" placeholder="Describe what kind of worker or service you need..."></textarea></div>
+        <div class="fg"><label>Type of Engagement <span class="req">*</span></label><div class="radio-grp"><label class="rl"><input type="radio" name="engagement" value="One-Time Job"> One-Time Job</label><label class="rl"><input type="radio" name="engagement" value="Weekly"> Weekly</label><label class="rl"><input type="radio" name="engagement" value="Monthly"> Monthly</label><label class="rl"><input type="radio" name="engagement" value="Long-term Contract"> Long-term</label></div></div>
+        <div class="form-sec-lbl">C — Location</div>
+        <div class="fg"><label>Service Address</label><textarea class="fi-inp" id="f-address" placeholder="Full address where worker is needed..." rows="2"></textarea></div>
+        <div class="frow"><div class="fg" id="fg-city"><label>City <span class="req">*</span></label><input type="text" class="fi-inp" id="f-city" placeholder="e.g. Varanasi, Mumbai, Dubai"><div class="ferr">City required</div></div><div class="fg"><label>State</label><select class="fi-inp" id="f-state"><option value="">— Select State —</option><option>Uttar Pradesh</option><option>Delhi</option><option>Maharashtra</option><option>Karnataka</option><option>Tamil Nadu</option><option>Telangana</option><option>West Bengal</option><option>Gujarat</option><option>Rajasthan</option><option>Madhya Pradesh</option><option>Bihar</option><option>Punjab</option><option>Haryana</option><option>Kerala</option><option>Uttarakhand</option><option>Goa</option><option>International</option></select></div></div>
+        <div class="frow"><div class="fg"><label>Country <span class="req">*</span></label><select class="fi-inp" id="f-country"><option value="India">🇮🇳 India</option><option>🇦🇪 UAE</option><option>🇸🇦 Saudi Arabia</option><option>🇶🇦 Qatar</option><option>🇰🇼 Kuwait</option><option>🇧🇭 Bahrain</option><option>🇸🇬 Singapore</option><option>🇲🇾 Malaysia</option><option>🇴🇲 Oman</option><option>🇬🇧 UK</option><option>🇺🇸 USA</option><option>🇦🇺 Australia</option></select></div><div class="fg"><label>Pincode</label><input type="text" class="fi-inp" id="f-pin" placeholder="221001"></div></div>
+        <div class="form-sec-lbl">D — Schedule & Budget</div>
+        <div class="frow"><div class="fg" id="fg-date"><label>Preferred Start Date <span class="req">*</span></label><input type="date" class="fi-inp" id="f-date"><div class="ferr">Select a valid date</div></div><div class="fg"><label>Time Slot <span class="req">*</span></label><select class="fi-inp" id="f-time"><option value="">— Select —</option><option>Morning 6AM–12PM</option><option>Afternoon 12PM–5PM</option><option>Evening 5PM–9PM</option><option>Night 9PM–6AM</option><option>Flexible</option></select></div></div>
+        <div class="frow"><div class="fg"><label>Duration</label><select class="fi-inp" id="f-duration"><option value="">— Select —</option><option>Half Day</option><option>Full Day</option><option>1 Week</option><option>2 Weeks</option><option>1 Month</option><option>3 Months</option><option>Ongoing</option></select></div><div class="fg"><label>Budget Range</label><select class="fi-inp" id="f-budget"><option value="">— Select —</option><option>Below ₹500</option><option>₹500–₹2,000</option><option>₹2,000–₹10,000</option><option>₹10,000–₹50,000</option><option>₹50,000+</option><option>To Be Discussed</option></select></div></div>
+        <div class="form-sec-lbl">E — Additional</div>
+        <div class="fg"><label>Special Skills / Certifications Required</label><textarea class="fi-inp" id="f-skills" placeholder="e.g. Must know AC inverter models, Must speak English..." rows="2"></textarea></div>
+        <div class="frow"><div class="fg"><label>How did you hear about us?</label><select class="fi-inp" id="f-source"><option value="">— Select —</option><option>Google Search</option><option>WhatsApp</option><option>Instagram</option><option>Facebook</option><option>Friend Referral</option><option>Agent</option><option>Other</option></select></div><div class="fg"><label>Additional Notes</label><textarea class="fi-inp" id="f-notes" placeholder="Any special instructions..." rows="2"></textarea></div></div>
+        <button type="submit" class="submit-btn"><span>Submit My Request — We'll Call Within 2 Hours</span></button>
+      </form>
+      <div class="success-state" id="success-state">
+        <div class="success-check">✅</div>
+        <div class="success-title">Request Submitted!</div>
+        <p class="success-sub">Our team will contact you on your WhatsApp within 2 hours.</p>
+        <p class="success-sub">A dedicated relationship manager will reach out shortly.</p>
+        <div class="success-ref" id="success-ref"></div>
+        <div class="success-btns">
+          <button class="btn-ghost" onclick="resetModal()" style="font-size:0.82rem">Submit Another Request</button>
+          <a href="https://wa.me/" target="_blank" class="btn-prime" style="font-size:0.82rem;text-decoration:none"><span>Chat on WhatsApp →</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SUPA_URL='https://alwnajrbkcwsdqqsolru.supabase.co';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsd25hanJia2N3c2RxcXNvbHJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2ODkwNDQsImV4cCI6MjA5NDI2NTA0NH0.0q6geTSTcmjN9Dw8rx3UyMvziSal-_AzkADA0Re6b2A';
+const NK='drs_notifications';
+
+// ── DATA ──
+const SERVICES=[
+  {icon:'🏢',name:'Manpower Outsourcing',desc:'End-to-end workforce outsourcing for factories, offices, construction sites & large-scale commercial operations across India and abroad.',badge:'🏆 #1 Service'},
+  {icon:'❄️',name:'AC Technician',desc:'AC installation, gas refill, servicing & repair for all brands',badge:'🔥 Top Demand'},
+  {icon:'⚡',name:'Electrician',desc:'Wiring, fixtures, panel work & electrical fault diagnosis',badge:'🔥 Top Demand'},
+  {icon:'🔧',name:'Plumber',desc:'Pipe repair, installation, bathroom fitting & general plumbing work',badge:'🔥 Top Demand'},
+  {icon:'👨‍🍳',name:'Cook / Chef',desc:'Daily cooking, catering, tiffin service & household meal prep',badge:'🔥 Top Demand'},
+  {icon:'🏠',name:'House Cleaner',desc:'Deep cleaning, daily maintenance & sanitization for homes',badge:'⭐ Popular'},
+  {icon:'🛡️',name:'Security Guard',desc:'Trained & armed/unarmed security for homes, offices & events',badge:'⭐ Popular'},
+  {icon:'🚗',name:'Personal Driver',desc:'Licensed, verified drivers for home, office & outstation trips',badge:'⭐ Popular'},
+  {icon:'🧓',name:'Elderly Caretaker',desc:'Compassionate care for senior citizens at home or facility',badge:'⭐ Popular'},
+  {icon:'👶',name:'Babysitter / Nanny',desc:'Trained child caregivers with CPR certification & experience'},
+  {icon:'🪚',name:'Carpenter',desc:'Furniture, doors, windows, fittings & custom woodwork'},
+  {icon:'🎨',name:'Painter',desc:'Interior, exterior, texture & waterproof paint application'},
+  {icon:'🐛',name:'Pest Control',desc:'Termite, cockroach, rodent & bed bug treatment by certified experts'},
+  {icon:'🌿',name:'Gardener',desc:'Lawn care, pruning, planting & garden maintenance services'},
+  {icon:'🧱',name:'Mason / Mistri',desc:'Brick work, plastering, flooring & construction support'},
+  {icon:'💼',name:'Office Boy',desc:'Office support, tea serving, deliveries & administrative assistance'},
+  {icon:'👕',name:'Laundry Worker',desc:'Professional laundry, ironing & dry cleaning assistance'},
+  {icon:'📦',name:'Packers & Movers',desc:'Safe packing, loading, transport & unpacking services'},
+  {icon:'🏭',name:'Factory / Warehouse Helper',desc:'Industrial labor for manufacturing, sorting & warehouse operations'},
+  {icon:'🗺️',name:'Inter-State Deployment',desc:'Skilled workers deployed across any Indian state within 48 hours'},
+  {icon:'✈️',name:'International Placement',desc:'Verified professionals placed in UAE, Saudi, Qatar, Singapore & more'},
+  {icon:'✏️',name:'Custom Service',desc:'Need something unique? Describe your requirement — we will find the right professional.',badge:'🆕 Custom',custom:true}
+];
+const SERVICE_SUBTYPES={'Plumber':['Pipe Repair','New Installation','Bathroom Fitting','General Plumbing','Tank Cleaning'],'Electrician':['Wiring & Rewiring','Fixture Installation','Panel / Switchboard','Fault Diagnosis','CCTV & Security'],'House Cleaner':['One-Time Deep Clean','Daily Cleaning','Post-Construction','Move-In / Move-Out','Sofa & Carpet Cleaning'],'Carpenter':['Furniture Repair','New Furniture Making','Door & Window Fitting','Modular Work','Polishing & Finishing'],'Painter':['Interior Painting','Exterior Painting','Texture / Designer','Waterproof Coating','Touch-Up Work'],'AC Technician':['AC Installation','Gas Refill / Recharging','AC Servicing','Repair & Troubleshooting','Duct Cleaning'],'Cook / Chef':['Daily Home Cooking','Catering / Events','Continental / Chinese','Baking & Confectionery','Tiffin Service'],'Security Guard':['Residential Guard','Office / Commercial','Event Security','Armed Guard','CCTV Monitoring'],'Personal Driver':['Daily Office Driver','Outstation Trips','Airport Transfers','Long-term Monthly','Part-time / On-call'],'International Placement':['UAE / Gulf Countries','Southeast Asia','Domestic Worker','Driver Abroad','Skilled Trade Abroad']};
+const FAQS=[{q:'How quickly can DRS deploy a worker?',a:'Most domestic deployments happen within 24 hours. Inter-state placements take 2–4 days. International deployments are typically completed within 5–10 business days depending on documentation.'},{q:'Are your workers background verified?',a:'Yes. Every DRS worker undergoes Aadhaar ID verification, police clearance certificate check, previous employer reference check, and a skill assessment before being added to our network.'},{q:'What if I\'m not satisfied with the worker?',a:'We offer a free replacement guarantee. If a worker doesn\'t meet your expectations for any reason, inform us within the agreed period and we\'ll send a replacement at absolutely no extra charge.'},{q:'Do you provide workers outside India?',a:'Yes. We currently deploy workers to UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, Singapore, Malaysia, and Oman. More countries are being added to our network each quarter.'},{q:'What services do you offer?',a:'We offer 20+ services including plumbing, electrical work, house cleaning, cooking, carpentry, painting, AC repair, security services, elderly care, babysitting, driving, gardening, pest control, and international placements.'},{q:'How do I book a worker?',a:'Simply click "Book a Worker" on any service card, fill our 2-minute form, and our team will contact you within 2 hours via WhatsApp or phone with a confirmed deployment plan.'},{q:'What are your charges?',a:'Pricing depends on the service, duration, and location. We provide a clear quote after understanding your exact requirement. There are absolutely zero hidden charges — what we quote is what you pay.'},{q:'Can I hire multiple workers for commercial projects?',a:'Absolutely. We regularly handle bulk deployments for factories, construction sites, offices, and events. Contact us with your requirements and we\'ll provide a customized staffing solution.'}];
+
+// ── HERO CANVAS ──
+(function(){
+  const c=document.getElementById('hero-canvas');
+  c.style.cssText='position:absolute;inset:0;z-index:3';
+  const ctx=c.getContext('2d');let t=0;
+  function r(){c.width=c.offsetWidth;c.height=c.offsetHeight}
+  function d(){ctx.clearRect(0,0,c.width,c.height);const s=56;ctx.strokeStyle='rgba(201,150,12,0.7)';ctx.lineWidth=0.4;const ox=(t*.15)%s,oy=(t*.09)%s;for(let x=-s+ox;x<c.width+s;x+=s){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,c.height);ctx.stroke();}for(let y=-s+oy;y<c.height+s;y+=s){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(c.width,y);ctx.stroke();}t++;requestAnimationFrame(d);}
+  window.addEventListener('resize',r);r();d();
+})();
+
+// ── BUILD SERVICES ──
+(function(){
+  const g=document.getElementById('svc-grid');
+  SERVICES.forEach((s,i)=>{
+    const badgeHtml=s.badge?`<div class="svc-badge">${s.badge}</div>`:'<div class="svc-badge" style="opacity:0">·</div>';
+    const fn=s.custom?`openCust()`:`openModal('${s.name}')`;
+    const btnLabel=s.custom?'Describe Your Need →':'Book Now →';
+    const extra=s.custom?'svc-custom-card':'';
+    g.innerHTML+=`<div class="svc-card ${extra} fu" style="transition-delay:${(i%4)*60}ms" onclick="${fn}" role="button" tabindex="0">
+      ${badgeHtml}
+      <div class="svc-icon-wrap">${s.icon}</div>
+      <div class="svc-name">${s.name}</div>
+      <p class="svc-desc">${s.desc}</p>
+      <div class="svc-arrow">${btnLabel} <span>→</span></div>
+    </div>`;
+  });
+  document.querySelectorAll('.svc-card').forEach(c=>{c.addEventListener('keydown',e=>{if(e.key==='Enter')c.click();});});
+})();
+
+// ── BUILD FAQ ──
+(function(){
+  const l=document.getElementById('faq-list');
+  FAQS.forEach(f=>{
+    const item=document.createElement('div');item.className='faq-item';
+    item.innerHTML=`<div class="faq-q" tabindex="0"><span>${f.q}</span><span class="faq-arrow">▾</span></div><div class="faq-body"><div class="faq-body-inner">${f.a}</div></div>`;
+    const q=item.querySelector('.faq-q');
+    q.addEventListener('click',()=>{const was=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!was)item.classList.add('open');});
+    q.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')q.click();});
+    l.appendChild(item);
+  });
+})();
+
+// ── SCROLL OBSERVER ──
+(function(){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -32px 0px'});
+  document.querySelectorAll('.fu,.fi').forEach(el=>obs.observe(el));
+})();
+
+// ── COUNTERS ──
+(function(){
+  let done=false;
+  const obs=new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&!done){done=true;document.querySelectorAll('.counter-num[data-target]').forEach(el=>{const target=+el.dataset.target,suf=el.dataset.suf||'',dur=1800,start=performance.now();function up(now){const p=Math.min((now-start)/dur,1),ease=p<0.5?2*p*p:(4-2*p)*p-1,val=Math.round(ease*target);el.textContent=val.toLocaleString()+suf;if(p<1)requestAnimationFrame(up);}requestAnimationFrame(up);});}},{threshold:0.3});
+  obs.observe(document.getElementById('counters'));
+})();
+
+// ── NAV ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
+  document.getElementById('btt').classList.toggle('show',window.scrollY>300);
+});
+document.getElementById('ham').addEventListener('click',()=>{document.getElementById('mob-nav').classList.add('open');document.getElementById('nav-bd').classList.add('show');document.body.style.overflow='hidden';});
+function closeMobNav(){document.getElementById('mob-nav').classList.remove('open');document.getElementById('nav-bd').classList.remove('show');document.body.style.overflow='';}
+document.getElementById('mob-nav-close').addEventListener('click',closeMobNav);
+document.getElementById('nav-bd').addEventListener('click',closeMobNav);
+document.querySelectorAll('.mnl').forEach(a=>a.addEventListener('click',()=>setTimeout(closeMobNav,200)));
+
+// ── MARKETPLACE ──
+function swMkt(tab){
+  document.querySelectorAll('.mkt-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.mkt-fw').forEach(f=>f.classList.remove('active'));
+  document.getElementById('mtab-'+tab).classList.add('active');
+  document.getElementById('mkt-'+tab).classList.add('active');
+}
+async function saveMkt(data){const url=localStorage.getItem('drs_url')||SUPA_URL,key=localStorage.getItem('drs_key')||SUPA_KEY;if(!url||url.includes('YOUR_'))return;await fetch(url+'/rest/v1/marketplace',{method:'POST',headers:{'Content-Type':'application/json','apikey':key,'Authorization':'Bearer '+key},body:JSON.stringify(data)}).catch(()=>{});}
+document.getElementById('mb-form').addEventListener('submit',async function(e){
+  e.preventDefault();let v=true;
+  function chk(id,c){const fg=document.getElementById('mb-fg-'+id);if(fg){fg.classList.toggle('has-err',!c);if(!c)v=false;}}
+  chk('name',document.getElementById('mb-name').value.trim().length>=2);
+  chk('phone',document.getElementById('mb-phone').value.replace(/\D/g,'').length>=8);
+  chk('service',document.getElementById('mb-service').value!=='');
+  chk('city',document.getElementById('mb-city').value.trim().length>=2);
+  if(!v)return;
+  const btn=this.querySelector('button[type=submit]');btn.disabled=true;btn.querySelector('span').textContent='⏳ Submitting...';
+  const ref='MKT-B-'+Math.floor(1000+Math.random()*9000);
+  await saveMkt({ref_id:ref,type:'buyer',full_name:document.getElementById('mb-name').value.trim(),whatsapp:document.getElementById('mb-phone').value.trim(),service:document.getElementById('mb-service').value,city:document.getElementById('mb-city').value.trim(),budget:document.getElementById('mb-budget').value||null,urgency:document.getElementById('mb-when').value||null,description:document.getElementById('mb-desc').value.trim()||null,status:'New',submitted_at:new Date().toISOString()});
+  document.getElementById('mb-refid').textContent='Reference ID: '+ref;
+  this.style.display='none';document.getElementById('mkt-buyer-success').style.display='block';
+  btn.disabled=false;btn.querySelector('span').textContent='Submit — Get Matched Within 2 Hours';
+});
+document.getElementById('ms-form').addEventListener('submit',async function(e){
+  e.preventDefault();let v=true;
+  function chk(id,c){const fg=document.getElementById('ms-fg-'+id);if(fg){fg.classList.toggle('has-err',!c);if(!c)v=false;}}
+  chk('name',document.getElementById('ms-name').value.trim().length>=2);
+  chk('phone',document.getElementById('ms-phone').value.replace(/\D/g,'').length>=8);
+  chk('skill',document.getElementById('ms-skill').value!=='');
+  chk('city',document.getElementById('ms-city').value.trim().length>=2);
+  if(!v)return;
+  const btn=this.querySelector('button[type=submit]');btn.disabled=true;btn.querySelector('span').textContent='⏳ Submitting...';
+  const ref='MKT-S-'+Math.floor(1000+Math.random()*9000);
+  await saveMkt({ref_id:ref,type:'seller',full_name:document.getElementById('ms-name').value.trim(),whatsapp:document.getElementById('ms-phone').value.trim(),service:document.getElementById('ms-skill').value,city:document.getElementById('ms-city').value.trim(),experience:document.getElementById('ms-exp').value||null,rate:document.getElementById('ms-rate').value||null,availability:document.querySelector('input[name="ms-av"]:checked')?.value||null,description:document.getElementById('ms-bio').value.trim()||null,status:'New',submitted_at:new Date().toISOString()});
+  document.getElementById('ms-refid').textContent='Reference ID: '+ref;
+  this.style.display='none';document.getElementById('mkt-seller-success').style.display='block';
+  btn.disabled=false;btn.querySelector('span').textContent='Register as DRS Marketplace Professional';
+});
+
+// ── CUSTOM MODAL ──
+function openCust(){document.getElementById('cust-ov').classList.add('open');document.body.style.overflow='hidden';}
+function closeCust(){document.getElementById('cust-ov').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeCust();}});
+document.getElementById('cust-form').addEventListener('submit',async function(e){
+  e.preventDefault();let v=true;
+  function chk(id,c){const fg=document.getElementById('cf-fg-'+id);if(fg){fg.classList.toggle('has-err',!c);if(!c)v=false;}}
+  chk('name',document.getElementById('cf-name').value.trim().length>=2);
+  chk('phone',document.getElementById('cf-phone').value.replace(/\D/g,'').length>=8);
+  chk('city',document.getElementById('cf-city').value.trim().length>=2);
+  chk('desc',document.getElementById('cf-desc').value.trim().length>=10);
+  if(!v)return;
+  const btn=this.querySelector('button[type=submit]');btn.disabled=true;btn.querySelector('span').textContent='⏳ Submitting...';
+  await saveMkt({ref_id:'CST-'+Math.floor(1000+Math.random()*9000),type:'buyer',full_name:document.getElementById('cf-name').value.trim(),whatsapp:document.getElementById('cf-phone').value.trim(),service:'Custom Service',city:document.getElementById('cf-city').value.trim(),urgency:document.getElementById('cf-when').value||null,description:document.getElementById('cf-desc').value.trim(),status:'New',submitted_at:new Date().toISOString()});
+  this.style.display='none';document.getElementById('cust-success').style.display='block';
+  btn.disabled=false;btn.querySelector('span').textContent='Submit Custom Request →';
+});
+
+// ── BOOKING MODAL ──
+function openModal(service){
+  document.getElementById('modal-ov').classList.add('open');
+  document.body.style.overflow='hidden';
+  const today=new Date().toISOString().split('T')[0];
+  document.getElementById('f-date').min=today;
+  if(service){const sel=document.getElementById('f-service');for(let i=0;i<sel.options.length;i++){if(sel.options[i].text===service){sel.selectedIndex=i;updateSubtype(service);break;}}}
+}
+function closeModal(){document.getElementById('modal-ov').classList.remove('open');document.body.style.overflow='';}
+function resetModal(){document.getElementById('booking-form').style.display='';document.getElementById('success-state').style.display='none';document.getElementById('booking-form').reset();document.querySelectorAll('.fg.has-err').forEach(g=>g.classList.remove('has-err'));document.getElementById('f-subtype').innerHTML='<option value="">— Select service first —</option>';}
+// ── "OTHER" HANDLER ── shows text input when Other selected
+function handleOther(sel, wrapId){
+  const wrap = document.getElementById(wrapId);
+  if(!wrap) return;
+  const isOther = sel.value.includes('Other') || sel.value.includes('Custom');
+  wrap.style.display = isOther ? 'block' : 'none';
+  if(isOther) wrap.querySelector('input')?.focus();
+}
+
+document.getElementById('f-service').addEventListener('change', function(e){
+  updateSubtype(e.target.value);
+  // Show/hide "Other" text input in booking modal
+  const otherWrap = document.getElementById('f-other-wrap');
+  if(otherWrap){
+    const isOther = this.value.includes('Other') || this.value.includes('Custom');
+    otherWrap.style.display = isOther ? 'block' : 'none';
+  }
+});
+function updateSubtype(svc){const sel=document.getElementById('f-subtype'),subs=SERVICE_SUBTYPES[svc]||[];sel.innerHTML=subs.length?'<option value="">— Select sub-type —</option>'+subs.map(s=>`<option>${s}</option>`).join(''):'<option value="">— N/A —</option>';}
+async function saveLeadSupabase(data){const url=localStorage.getItem('drs_url')||SUPA_URL,key=localStorage.getItem('drs_key')||SUPA_KEY;if(!url||url.includes('YOUR_'))return;await fetch(url+'/rest/v1/leads',{method:'POST',headers:{'Content-Type':'application/json','apikey':key,'Authorization':'Bearer '+key,'Prefer':'return=representation'},body:JSON.stringify(data)}).catch(()=>{});}
+document.getElementById('booking-form').addEventListener('submit',async function(e){
+  e.preventDefault();let v=true;
+  function chk(id,c){const fg=document.getElementById('fg-'+id);if(fg){fg.classList.toggle('has-err',!c);if(!c)v=false;}}
+  const name=document.getElementById('f-name').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const phone=document.getElementById('f-phone').value.replace(/\D/g,'');
+  const svc = document.getElementById('f-service').value;
+  const otherSvc = document.getElementById('f-other-service')?.value.trim();
+  const finalSvc = (svc.includes('Other')||svc.includes('Custom')) && otherSvc ? `Other: ${otherSvc}` : svc;
+  const workers=document.getElementById('f-workers').value;
+  const city=document.getElementById('f-city').value.trim();
+  const date=document.getElementById('f-date').value;
+  const today=new Date().toISOString().split('T')[0];
+  chk('name',name.length>=2);chk('email',/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));chk('phone',phone.length>=8);chk('service',svc!=='');chk('workers',workers>=1&&workers<=100);chk('city',city.length>=2);chk('date',date>=today);
+  if(!v){document.querySelector('.fg.has-err')?.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  const btn=this.querySelector('button[type=submit]');btn.disabled=true;btn.querySelector('span').textContent='⏳ Submitting...';
+  const ref='DRS-2025-'+Math.floor(1000+Math.random()*9000);
+  const payload={ref_id:ref,full_name:name,email,whatsapp:document.getElementById('f-cc').value+phone,alt_phone:document.getElementById('f-altphone').value.trim()||null,service:finalSvc,sub_type:document.getElementById('f-subtype').value||null,workers_required:+workers,engagement_type:document.querySelector('input[name="engagement"]:checked')?.value||null,urgency:document.getElementById('f-urgency').value||null,address:document.getElementById('f-address').value.trim()||null,city,state:document.getElementById('f-state').value||null,country:document.getElementById('f-country').value||'India',pincode:document.getElementById('f-pin').value.trim()||null,start_date:date,time_slot:document.getElementById('f-time').value||null,duration:document.getElementById('f-duration').value||null,budget:document.getElementById('f-budget').value||null,special_skills:document.getElementById('f-skills').value.trim()||null,source:document.getElementById('f-source').value||null,notes:document.getElementById('f-notes').value.trim()||null,status:'New',submitted_at:new Date().toISOString()};
+  await saveLeadSupabase(payload);
+  document.getElementById('success-ref').textContent='Reference ID: '+ref;
+  this.style.display='none';document.getElementById('success-state').style.display='block';
+  document.getElementById('modal-box').scrollTop=0;
+  btn.disabled=false;btn.querySelector('span').textContent="Submit My Request — We'll Call Within 2 Hours";
+});
+document.querySelectorAll('.fi-inp').forEach(inp=>{inp.addEventListener('input',()=>{inp.closest('.fg')?.classList.remove('has-err');});});
+
+// ── ANALYTICS TRACKING ──
+(function(){try{const url=localStorage.getItem('drs_url')||SUPA_URL,key=localStorage.getItem('drs_key')||SUPA_KEY;if(!url||url.includes('YOUR_'))return;const today=new Date().toISOString().split('T')[0],sk='drs_vis_'+today,isNew=!sessionStorage.getItem(sk);sessionStorage.setItem(sk,'1');fetch(url+'/rest/v1/pageviews',{method:'POST',headers:{'Content-Type':'application/json','apikey':key,'Authorization':'Bearer '+key},body:JSON.stringify({page:window.location.pathname||'/',referrer:document.referrer||null,is_new_session:isNew,visited_at:new Date().toISOString()})}).catch(()=>{});}catch(e){}})();
+
+// ── FIREBASE CONFIG ──
+// 🔑 YAHAN APNI FIREBASE CONFIG DAALO (Firebase Console > Project Settings > Your Apps)
+const FB_CONFIG = {
+  apiKey:            "AIzaSyBO4o7bAYLaZSyMOixObSrz8r8-sOuH-5c",
+  authDomain:        "drs-final.firebaseapp.com",
+  databaseURL:       "https://drs-final-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:         "drs-final",
+  storageBucket:     "drs-final.firebasestorage.app",
+  messagingSenderId: "143623823506",
+  appId:             "1:143623823506:web:b4a1978fd315cc0cd2864b"
+};
+
+let fbApp=null, fbDB=null, fbUnsubscribe=null;
+let firebaseReady=false;
+
+async function initFirebase(){
+  try {
+    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+    const { getDatabase, ref, onValue, onChildAdded, query, orderByChild, limitToLast } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js');
+    if(FB_CONFIG.apiKey==='YOUR_API_KEY'){console.warn('DRS: Firebase config not set — notifications disabled');return;}
+    fbApp = initializeApp(FB_CONFIG);
+    fbDB  = getDatabase(fbApp);
+    firebaseReady = true;
+    // Listen for new notifications in realtime
+    const notifRef = query(ref(fbDB,'drs_notifications'),orderByChild('sentAt'),limitToLast(1));
+    onChildAdded(notifRef, snap=>{
+      const n = snap.val();
+      if(!n) return;
+      // Ignore notifications older than 30 seconds (avoid showing old ones on page load)
+      const age = Date.now() - new Date(n.sentAt).getTime();
+      if(age > 30000) return;
+      addNotif(n.title, n.body, n.icon, n.ctaText, n.ctaUrl);
+      showNB(n.title, n.body, n.icon, n.ctaText, n.ctaUrl);
+    });
+    // Listen for clear-all command
+    const clearRef = ref(fbDB,'drs_clear_command');
+    onValue(clearRef, snap=>{
+      const v = snap.val();
+      if(v && v.action==='clear_all'){clearAllNotifs();}
+    });
+    console.log('DRS: Firebase Realtime connected ✅');
+  } catch(err){
+    console.warn('DRS: Firebase init failed, falling back to localStorage', err);
+  }
+}
+
+// ── NOTIFICATION BELL ──
+let bellOpen=false;
+function loadNotifs(){try{return JSON.parse(localStorage.getItem(NK)||'[]');}catch(e){return[];}}
+function saveNotifs(n){localStorage.setItem(NK,JSON.stringify(n));}
+function addNotif(title,body,icon,ctaText,ctaUrl){
+  const n=loadNotifs();
+  n.unshift({id:'n_'+Date.now(),title,body,icon:icon||'🔔',ctaText:ctaText||'',ctaUrl:ctaUrl||'#',time:new Date().toISOString(),unread:true});
+  if(n.length>20)n.splice(20);saveNotifs(n);renderBell();
+  const btn=document.getElementById('bell-btn');btn.classList.remove('ringing');void btn.offsetWidth;btn.classList.add('ringing');
+}
+function dismissNotif(id){saveNotifs(loadNotifs().filter(n=>n.id!==id));renderBell();renderBellPanel();}
+function clearAllNotifs(){saveNotifs([]);renderBell();renderBellPanel();}
+function markAllRead(){saveNotifs(loadNotifs().map(n=>({...n,unread:false})));renderBell();}
+function renderBell(){
+  const n=loadNotifs(),unread=n.filter(x=>x.unread).length;
+  const dot=document.getElementById('bell-dot');if(dot)dot.className='bell-dot'+(unread>0?' show':'');
+  const cl=document.getElementById('np-clear');if(cl)cl.className='np-clear'+(n.length>0?' show':'');
+}
+function renderBellPanel(){
+  const n=loadNotifs(),body=document.getElementById('np-body');if(!body)return;
+  if(!n.length){body.innerHTML='<div class="np-empty"><div class="np-empty-icon">🔔</div><div class="np-empty-text">No notifications yet.<br><span style="font-size:0.72rem;opacity:0.6">DRS updates will appear here.</span></div></div>';return;}
+  body.innerHTML=n.map(x=>{
+    const dt=new Date(x.time),ds=dt.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})+' · '+dt.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true});
+    const ctaBtn=x.ctaText?`<button class="niab niab-open" onclick="handleNIClick('${x.id}','${x.ctaUrl}')">${x.ctaText}</button>`:'';
+    return`<div class="ni ${x.unread?'unread':''}" id="ni_${x.id}"><div class="ni-icon">${x.icon}</div><div class="ni-body"><div class="ni-title">${x.title}</div><div class="ni-msg">${x.body}</div><div class="ni-time">${ds}</div><div class="ni-acts">${ctaBtn}<button class="niab niab-dismiss" onclick="dismissNotif('${x.id}')">✕ Dismiss</button></div></div></div>`;
+  }).join('');
+}
+function handleNIClick(id,url){
+  const n=loadNotifs().map(x=>x.id===id?{...x,unread:false}:x);saveNotifs(n);renderBell();
+  if(url==='#modal'){openModal();toggleBell();}else if(url?.startsWith('#')){document.querySelector(url)?.scrollIntoView({behavior:'smooth'});toggleBell();}else if(url){window.open(url,'_blank');}
+}
+function toggleBell(){
+  bellOpen=!bellOpen;document.getElementById('notif-panel').classList.toggle('open',bellOpen);
+  if(bellOpen){renderBellPanel();markAllRead();}
+}
+document.addEventListener('click',e=>{const w=document.getElementById('bell-wrap');if(w&&!w.contains(e.target)&&bellOpen){bellOpen=false;document.getElementById('notif-panel').classList.remove('open');}});
+
+// ── IN-APP NOTIF BAR ──
+let nbCTAUrl='#';
+function showNB(title,body,icon,ctaText,ctaUrl){
+  document.getElementById('nb-icon').textContent=icon||'🔔';
+  document.getElementById('nb-title').textContent=title;
+  document.getElementById('nb-body').textContent=body;
+  const btn=document.getElementById('nb-cta');btn.textContent=ctaText||'View';btn.style.display=ctaText?'':'none';
+  nbCTAUrl=ctaUrl||'#';document.getElementById('notif-bar').classList.add('show');
+  setTimeout(closeNB,14000);
+}
+function closeNB(){document.getElementById('notif-bar').classList.remove('show');}
+function handleNBCTA(){if(nbCTAUrl==='#modal')openModal();else if(nbCTAUrl?.startsWith('#'))document.querySelector(nbCTAUrl)?.scrollIntoView({behavior:'smooth'});else window.open(nbCTAUrl,'_blank');closeNB();}
+
+// ── FALLBACK: localStorage (same device only) ──
+window.addEventListener('storage',e=>{
+  if(e.key==='drs_broadcast_notif'&&e.newValue&&!firebaseReady){
+    try{const n=JSON.parse(e.newValue);addNotif(n.title,n.body,n.icon,n.ctaText,n.ctaUrl);showNB(n.title,n.body,n.icon,n.ctaText,n.ctaUrl);}catch(err){}
+  }
+  if(e.key==='drs_clear_all_notifs'&&e.newValue==='1'&&!firebaseReady){clearAllNotifs();localStorage.removeItem('drs_clear_all_notifs');}
+});
+
+// ── PUSH NOTIFICATIONS ──
+const OS_ID=localStorage.getItem('drs_onesignal_id')||'YOUR_ONESIGNAL_APP_ID';
+function initOS(){if(!OS_ID||OS_ID.includes('YOUR_'))return;window.OneSignalDeferred=window.OneSignalDeferred||[];const s=document.createElement('script');s.src='https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';s.defer=true;document.head.appendChild(s);OneSignalDeferred.push(async function(OS){await OS.init({appId:OS_ID,allowLocalhostAsSecureOrigin:true});});}
+function allowPush(){localStorage.setItem('drs_push_asked','1');document.getElementById('push-prompt').classList.remove('show');if('Notification' in window)Notification.requestPermission().then(p=>{if(p==='granted')initOS();});}
+function denyPush(){localStorage.setItem('drs_push_asked','denied');document.getElementById('push-prompt').classList.remove('show');}
+function initPushPrompt(){if(localStorage.getItem('drs_push_asked'))return;setTimeout(()=>{if(!localStorage.getItem('drs_push_asked'))document.getElementById('push-prompt').classList.add('show');},30000);}
+
+// ── ANALYTICS TRACKING ──
+(function trackVisit(){try{const url=localStorage.getItem('drs_url')||SUPA_URL,key=localStorage.getItem('drs_key')||SUPA_KEY;if(!url||url.includes('YOUR_'))return;const today=new Date().toISOString().split('T')[0],sk='drs_vis_'+today,isNew=!sessionStorage.getItem(sk);sessionStorage.setItem(sk,'1');fetch(url+'/rest/v1/pageviews',{method:'POST',headers:{'Content-Type':'application/json','apikey':key,'Authorization':'Bearer '+key},body:JSON.stringify({page:window.location.pathname||'/',referrer:document.referrer||null,is_new_session:isNew,visited_at:new Date().toISOString()})}).catch(()=>{});}catch(e){}})();
+
+// Init
+renderBell();
+initPushPrompt();
+initOS();
+initFirebase(); // Firebase realtime notifications
+</script>
+</body>
+</html>
